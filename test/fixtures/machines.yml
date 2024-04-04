@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufactrurer: MyString
+  tonnage: 1
+  site: one
+  manufacture_year: 2024-04-04
+  maintainx_id: MyString
+  type: 
+
+two:
+  manufactrurer: MyString
+  tonnage: 1
+  site: two
+  manufacture_year: 2024-04-04
+  maintainx_id: MyString
+  type: 
