@@ -12,15 +12,17 @@
   </head>
 
   <body>
-  <nav class="flex justify-between mt-10 ml-12 mr-12">
-    <div >
-      <%#= link_to 'Goodfish Settings', root_path %>
-      <ul class="list-none">
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Sites', sites_path %></li>
-      </ul>
+  <nav class="flex justify-center mt-10 ml-12 mr-12 border-b-2">
+    <div class="mr-12 mt-2">
+      <%= image_tag("Goodfish-MAKING-Logo-3-Transparent-BK-Ground.png", alt: "goodfish-logo", style: "height: 48px") %>
     </div>
-
+    <div class="mb-4">
+      <ul class="list-none flex">
+        <li class="mr-4 ml-4 bg-lime-200 p-4 w-36 text-center rounded-md"><%= link_to 'Home', root_path %></li>
+        <li class="mr-4 ml-4 bg-lime-200 p-4 w-36 text-center rounded-md"><%= link_to 'Sites', sites_path %></li>
+        <li class="mr-4 ml-4 bg-lime-200 p-4 w-36 text-center rounded-md"><%= link_to 'Machines', machines_path %></li>
+        <li class="mr-4 ml-4 bg-lime-200 p-4 w-36 text-center rounded-md"><%= link_to 'Tools', tools_path %></li>
+        <li class="mr-4 ml-4 bg-lime-200 p-4 w-36 text-center rounded-md"><%= link_to 'Settings', settings_path %></li>
   </nav>
     <main class="container mt-24 ml-24">
       <%= yield %>
