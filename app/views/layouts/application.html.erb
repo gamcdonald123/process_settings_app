@@ -12,7 +12,17 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <nav class="flex justify-between mt-10 ml-12 mr-12">
+    <div >
+      <%#= link_to 'Goodfish Settings', root_path %>
+      <ul class="list-none">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Sites', sites_path %></li>
+      </ul>
+    </div>
+
+  </nav>
+    <main class="container mt-24 ml-24">
       <%= yield %>
     </main>
   </body>

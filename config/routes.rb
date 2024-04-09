@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :machines
   resources :tools
   resources :settings
+  root 'application#home'
 end
