@@ -1,0 +1,7 @@
+<h1>Sites</h1>
+<br>
+<div class="flex ">
+  <% @sites.each do |site| %>
+    <%= link_to site.site_name, site_path(site) %>
+  <% end %>
+</div>
