@@ -23,7 +23,8 @@
         </thead>
         <tbody>
             <% @machines.each do |machine| %>
-                <tr class="hover:underline cursor-pointer" onclick="window.location='<%= machine_path(machine) %>'">                    <td><%= machine.machine_name %></td>
+                <tr class="hover:underline cursor-pointer" onclick="window.location='<%= machine_path(machine) %>'">                    
+                    <td><%= machine.machine_name %></td>
                     <td><%= machine.tonnage %></td>
                     <td><%= machine.manufacturer %></td>
                     <td><%= Site.find(machine.site_id).site_name %></td>
@@ -31,4 +32,8 @@
             <% end %>
         </tbody>    
     </table>
+</div>
+
+<div class="bg-blue-500 text-white w-36 text-center py-1 rounded">
+    <%= link_to 'Add a new machine', new_machine_path %>
 </div>
