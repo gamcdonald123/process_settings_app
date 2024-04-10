@@ -1,3 +1,7 @@
 <h1><%= @machine.machine_name %></h1>
 
+<% @settings.each do |setting| %>
+    <p><%= link_to Tool.find(setting.tool_id) %></p>
+<% end %>
+
 <%= link_to 'Back', machines_path %>

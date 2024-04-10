@@ -1,0 +1,22 @@
+<div class="w-320 mt-24">
+    <table class="table-auto">
+        <thead>
+            <th>
+                <th class="pr-32">Machine</th>
+                <th class="pr-24">Tonnage</th>
+                <th class="pr-24">Manufacturer</th>
+                <th class="pr-24">Site</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @machines.each do |machine| %>
+                <tr class="hover:underline cursor-pointer" onclick="window.location='<%= machine_path(machine) %>'">
+                    <td><%= machine.machine_name %></td>
+                    <td><%= machine.tonnage %></td>
+                    <td><%= machine.manufacturer %></td>
+                    <td><%= Site.find(machine.site_id).site_name %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

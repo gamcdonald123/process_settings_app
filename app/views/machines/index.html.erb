@@ -1,39 +1,44 @@
-<div class="bg-sky-100 text-center rounded">
-    <h1 class="text-3xl p-4">Machines</h1>
-</div>
-<div class="grid grid-cols-3 gap-4 mt-4">
-    <% @machines.each do |machine| %>
-        <%= link_to machine_path(machine), class: "card border border-gray-300 rounded-lg p-4 flex items-center block" do %>
-            <div>
-                <h2 class="text-lg mb-2"><%= machine.machine_name %></h2>
-            </div>
-        <% end %>
-    <% end %>
-</div>
-
-<div class="w-320 mt-24">
-    <table class="table-auto">
-        <thead>
-            <tr>
-                <th class="pr-32">Machine</th>
-                <th class="pr-24">Tonnage</th>
-                <th class="pr-24">Manufacturer</th>
-                <th class="pr-24">Site</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @machines.each do |machine| %>
-                <tr class="hover:underline cursor-pointer" onclick="window.location='<%= machine_path(machine) %>'">                    
-                    <td><%= machine.machine_name %></td>
-                    <td><%= machine.tonnage %></td>
-                    <td><%= machine.manufacturer %></td>
-                    <td><%= Site.find(machine.site_id).site_name %></td>
-                </tr>
+<div>
+    <div class="bg-sky-100 text-center rounded">
+        <h1 class="text-3xl p-4">Machines</h1>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-4">
+        <% @machines.each do |machine| %>
+            <%= link_to machine_path(machine), class: "card border border-gray-300 rounded-lg p-4 flex justify-between block shadow" do %>
+                <div class="flex justify-center items-center h-full">
+                    <h2 class="text-xl mb-2"><%= machine.machine_name %></h2>
+                </div>
+                <div>
+                    <p class="text-sm mb-2 text-slate-500"><%= machine.tonnage %>t</p>
+                    <p class="text-sm mb-2 text-slate-500"><%= machine.manufacturer %></p>
+                    <p class="text-sm mb-2 text-slate-500"><%= Site.find(machine.site_id).site_name %></p>
+                </div>
             <% end %>
-        </tbody>    
-    </table>
-</div>
-
-<div class="bg-blue-500 text-white w-36 text-center py-1 rounded">
-    <%= link_to 'Add a new machine', new_machine_path %>
+        <% end %>
+    </div>
+    <div class="bg-blue-500 text-white w-36 text-center py-1 rounded mt-4">
+        <%= link_to 'Add a new machine', new_machine_path %>
+    </div>
+    <div class="w-320 mt-24">
+        <table class="table-auto">
+            <thead>
+                <th>
+                    <th class="pr-32">Machine</th>
+                    <th class="pr-24">Tonnage</th>
+                    <th class="pr-24">Manufacturer</th>
+                    <th class="pr-24">Site</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @machines.each do |machine| %>
+                    <tr class="hover:underline cursor-pointer" onclick="window.location='<%= machine_path(machine) %>'">
+                        <td><%= machine.machine_name %></td>
+                        <td><%= machine.tonnage %></td>
+                        <td><%= machine.manufacturer %></td>
+                        <td><%= Site.find(machine.site_id).site_name %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>
