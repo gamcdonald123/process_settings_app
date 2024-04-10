@@ -12,19 +12,21 @@
   </head>
 
   <body>
-  <nav class="flex justify-center mt-10 ml-12 mr-12 border-b-2">
-    <div class="mr-12 mt-2">
-      <%= image_tag("Goodfish-MAKING-Logo-3-Transparent-BK-Ground.png", alt: "goodfish-logo", style: "height: 48px") %>
-    </div>
-    <div class="mb-4">
-      <ul class="list-none flex">
-        <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Home', root_path %></li>
-        <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Sites', sites_path %></li>
-        <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Machines', machines_path %></li>
-        <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Tools', tools_path %></li>
-        <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Settings', settings_path %></li>
-  </nav>
-    <main class="container mt-24 ml-24">
+    <nav class="flex justify-center border-b-2 py-4 mx-auto px-4 max-w-7xl">
+      <div class="mr-12 mt-2">
+        <%= image_tag("Goodfish-MAKING-Logo-3-Transparent-BK-Ground.png", alt: "goodfish-logo", style: "height: 48px") %>
+      </div>
+      <div class="mb-4">
+        <ul class="list-none flex">
+          <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Home', root_path %></li>
+          <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Sites', sites_path %></li>
+          <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Machines', machines_path %></li>
+          <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Tools', tools_path %></li>
+          <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md"><%= link_to 'Settings', settings_path %></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="mt-24 mx-auto px-4 max-w-7xl">
       <%= yield %>
     </main>
   </body>
