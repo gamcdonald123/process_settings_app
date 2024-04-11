@@ -74,6 +74,9 @@ Machine.create(manufacturer: "Sandretto", tonnage: 110, site_id: 3, machine_type
 Machine.create(manufacturer: "Engel", tonnage: 300, site_id: 3, machine_type: "Injection Moulding", machine_name: "M71")
 Machine.create(manufacturer: "Engel", tonnage: 400, site_id: 3, machine_type: "Injection Moulding", machine_name: "M70")
 Machine.create(manufacturer: "Engel", tonnage: 150, site_id: 3, machine_type: "Injection Moulding", machine_name: "M73")
+Machine.create(manufacturer: "Engel", tonnage: 50, site_id: 3, machine_type: "Injection Moulding", machine_name: "M72")
+Machine.create(manufacturer: "Engel", tonnage: 400, site_id: 3, machine_type: "Injection Moulding", machine_name: "M74")
+Machine.create(manufacturer: "Negri Bossi", tonnage: 500, site_id: 3, machine_type: "Injection Moulding", machine_name: "M75")
 
 
 Technician.create(first_name: "Andy", last_name: "Dicken", site_id: 1)

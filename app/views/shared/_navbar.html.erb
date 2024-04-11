@@ -1,33 +1,49 @@
 <!-- _navbar.html.erb -->
-<nav class="flex justify-center border-b-2 py-4 mx-auto px-4 max-w-7xl" data-controller="navbar">
-    <div class="mr-12 mt-2">
-        <!-- Burger icon with Stimulus action to toggle the menu -->
-        <div id="burger" class="flex flex-col space-y-2 cursor-pointer" data-action="click->navbar#toggleMenu">
-            <div class="w-8 h-0.5 bg-gray-600"></div>
-            <div class="w-8 h-0.5 bg-gray-600"></div>
-            <div class="w-8 h-0.5 bg-gray-600"></div>
+<nav class="border-b-2 py-4 mx-auto px-4 max-w-7xl" data-controller="navbar">
+    <div class="flex items-center justify-between"> <!-- Centered horizontally -->
+        <!-- Left Section for Burger and Logo -->
+        <div class="flex items-center">
+            <!-- Burger icon with Stimulus action to toggle the menu -->
+            <div id="burger" class="flex flex-col space-y-2 cursor-pointer mr-12" data-action="click->navbar#toggleMenu">
+                <div class="w-8 h-0.5 bg-gray-600"></div>
+                <div class="w-8 h-0.5 bg-gray-600"></div>
+                <div class="w-8 h-0.5 bg-gray-600"></div>
+            </div>
+            <!-- Logo -->
+            <%= image_tag("Goodfish-MAKING-Logo-3-Transparent-BK-Ground.png", alt: "goodfish-logo", class: "h-12") %>
         </div>
-    </div>
-    <div class="mr-12 mt-2">
-        <!-- Logo -->
-        <%= image_tag("Goodfish-MAKING-Logo-3-Transparent-BK-Ground.png", alt: "goodfish-logo", style: "height: 48px") %>
-    </div>
-    <!-- Menu, initially hidden, with Stimulus target -->
-    <div class="mb-4 hidden md:block" id="menu" data-navbar-target="menu">
-        <ul class="list-none flex">
-            <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200"><%= link_to 'Home', root_path %></li>
-            <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200"><%= link_to 'Sites', sites_path %></li>
-            <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200"><%= link_to 'Machines', machines_path %></li>
-            <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200"><%= link_to 'Tools', tools_path %></li>
-            <li class="mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200"><%= link_to 'Settings', settings_path %></li>
-        </ul>
-    </div>
-    <div class="flex justify-center">
+
+        <!-- Center Section for Navigation Links -->
+        <div class="hidden md:flex justify-center flex-grow" id="menu" data-navbar-target="menu">
+            <ul class="list-none flex justify-center">
+                <%= link_to root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Home</li>
+                <% end %>
+                <%= link_to sites_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Sites</li>
+                <% end %>
+                <%= link_to machines_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Machines</li>
+                <% end %>
+                <%= link_to tools_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Tools</li>
+                <% end %>
+                <%= link_to settings_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-36 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Parameters</li>
+                <% end %>
+            </ul>
+        </div>
+
+        <!-- Right Section for User Info and Sign Out -->
         <% if user_signed_in? %>
-        <p class="text-right">Signed in as <%= current_user.first_name %></p>
-        <%= link_to "Sign out", destroy_user_session_path(@current_user), data: { turbo_method: :delete }, class: "text-right" %>
+            <div class="flex flex-col items-center">
+                <p class="text-center mb-1"><%= current_user.first_name %> <%= current_user.last_name %></p>
+                <%= link_to "Sign out", destroy_user_session_path(@current_user), data: { turbo_method: :delete }, class: "text-right" %>
+            </div>
         <% else %>
-        <%= link_to "Sign in", new_user_session_path, class: "text-right" %>
+            <div class="text-center">
+                <%= link_to "Sign in", new_user_session_path, class: "text-center" %>
+            </div>
         <% end %>
     </div>
 </nav>
