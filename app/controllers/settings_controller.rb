@@ -17,7 +17,7 @@ class SettingsController < ApplicationController
     @setting = Setting.new(setting_params)
 
     if @setting.save
-      redirect_to @setting, notice: 'Setting was successfully created.'
+      redirect_to @setting
     else
       render :new
     end

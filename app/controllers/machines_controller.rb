@@ -34,7 +34,7 @@ class MachinesController < ApplicationController
     @machine = Machine.new(machine_params)
 
     if @machine.save
-      redirect_to @machine, notice: 'Machine was successfully created.'
+      redirect_to @machine
     else
       render :new
     end
