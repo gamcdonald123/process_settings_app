@@ -3,17 +3,19 @@
     <h1 class="text-3xl font-bold text-left mb-4"><%= Tool.find(@setting.tool_id).tool_name %> Details</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <div class="p-4 bg-white rounded shadow">
+        <div class="p-4 bg-white rounded shadow border">
             <h2 class="text-xl font-bold mb-2">Technician</h2>
             <p><%= Technician.find(@setting.technician_id).first_name %> <%= Technician.find(@setting.technician_id).last_name %></p>
         </div>
 
-        <div class="p-4 bg-white rounded shadow">
+        <div class="p-4 bg-white rounded shadow border">
             <h2 class="text-xl font-bold mb-2">Machine</h2>
-            <p><%= link_to Machine.find(@setting.machine_id).machine_name, machine_path(@setting.machine_id) %></p>
+            <p>Name: <%= link_to @setting.machine.machine_name, machine_path(@setting.machine_id) %></p>
+            <p>Tonnage: <%= @setting.machine.tonnage %>T</p>
+            <p>Site: <%= @setting.machine.site.site_name %></p>
         </div>
 
-        <div class="p-4 bg-white rounded shadow">
+        <div class="p-4 bg-white rounded shadow border">
             <h2 class="text-xl font-bold mb-2">Dates</h2>
             <% @setting.attributes.each do |attr_name, attr_value| %>
                 <% if attr_value.present? && %w[created_at updated_at].include?(attr_name) %>
@@ -26,7 +28,7 @@
         </div>
     </div>
 
-    <div class="p-4 bg-white rounded shadow">
+    <div class="p-4 bg-white rounded shadow border">
         <h2 class="text-xl font-bold mb-2">Setting Details</h2>
         <% @setting.attributes.each do |attr_name, attr_value| %>
             <% if attr_value.present? && !%w[id tool_id machine_id technician_id created_at updated_at].include?(attr_name) %>
