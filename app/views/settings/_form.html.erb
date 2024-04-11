@@ -1,0 +1,16 @@
+<div class="flex justify-center">
+    <%= form_with(model: @setting, local: true) do |form| %>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto" data-controller="dropdown">
+            <%= form.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+            <%= form.select :machine_id, [], {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+            <% @setting.attributes.each do |attr_name, attr_value| %>
+                <% if !%w[id technician_id created_at updated_at site_id machine_id].include?(attr_name) %>
+                    <div class="mb-4">
+                        <%= form.label attr_name.titleize, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                        <%= form.text_field attr_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
