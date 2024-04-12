@@ -1,4 +1,8 @@
+<div class="bg-blue-500 text-white w-36 text-center py-1 rounded mb-4">
+    <%= link_to 'Add parameters', new_setting_path %>
+</div>
 <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4">
+
     <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
         <thead>
             <tr class="text-left">
@@ -15,10 +19,10 @@
                         <%= setting.id %>
                     </td>
                     <td class="p-2 border-b border-gray-200">
-                        <%= Tool.find(setting.id).tool_name %>
+                        <%= setting.tool.tool_name %>
                     </td>
                     <td class="p-2 border-b border-gray-200">
-                        <%= Machine.find(setting.id).machine_name %>
+                        <%= setting.machine.machine_name %>
                     </td>
                     <td class="p-2 border-b border-gray-200">
                         <%= setting.machine.site.site_name %>

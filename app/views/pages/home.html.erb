@@ -1,7 +1,17 @@
-<div class="flex justify-center">
-    <h1>Welcome to the Goodfish Process Settings App</h1>
-</div>
+<% if !user_signed_in? %>
+    <div class="flex justify-center">
+        <h1>Welcome to the Machine Settings App</h1>
+    </div>
 
-<div class="flex justify-center mt-24">
-    <p>Please sign-up/in before choosing where you would like to go using the above navbar</p>
-</div>
+    <div class="flex justify-center mt-24">
+        <p>Please sign-up/in before choosing where you would like to go using the above navbar</p>
+    </div>
+<% else %>
+    <div class="flex justify-center">
+        <h1>Welcome to the Goodfish Process Settings App</h1>
+    </div>
+
+    <div class="flex justify-center mt-24">
+        <p>Choose where you would like to go using the above navbar</p>
+    </div>
+<% end %>

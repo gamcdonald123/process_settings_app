@@ -1,1 +1,26 @@
-<h1>form</h1>
+<div class="flex justify-center">
+    <%= form_with(model: @machine, local: true) do |form| %>
+        <div class="mb-4">
+            <%= form.label :machine_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= form.text_field :machine_name, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+    
+        <div class="mb-4">
+            <%= form.label :tonnage, class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= form.number_field :tonnage, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
+    
+        <div class="mb-4">
+            <%= form.label :manufacturer, class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= form.select :manufacturer, ['-', 'Negri Bossi', 'Arburg', 'Engel', 'Sandretto'], {}, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>    
+        <div class="mb-4">
+            <%= form.label :site_id, class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= form.collection_select :site_id, Site.all, :id, :site_name, {}, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div> 
+        
+        <div class="flex items-center justify-between">
+            <%= form.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        </div>
+    <% end %>
+</div>

@@ -1,19 +1,28 @@
+puts "Destroying all records..."
 Setting.destroy_all
 Tool.destroy_all
 Machine.destroy_all
 Technician.destroy_all
 Site.destroy_all
+User.destroy_all
+puts "All records destroyed."
 
+puts "Resetting primary keys..."
 ActiveRecord::Base.connection.reset_pk_sequence!('settings')
 ActiveRecord::Base.connection.reset_pk_sequence!('tools') # Ensure it's 'tools', not 'tool'
 ActiveRecord::Base.connection.reset_pk_sequence!('machines')
 ActiveRecord::Base.connection.reset_pk_sequence!('technicians') # Ensure it's pluralized
 ActiveRecord::Base.connection.reset_pk_sequence!('sites')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+puts "Primary keys reset."
 
+puts "Creating sites..."
 Site.create(site_name: "GFC")
 Site.create(site_name: "GPH")
 Site.create(site_name: "GNW")
+puts "Sites created."
 
+puts "Creating machines..."
 #GFC Machines
 Machine.create(manufacturer: "Negri Bossi", tonnage: 1000, site_id: 1, machine_type: "Injection Moulding", machine_name: "IMM 15")
 Machine.create(manufacturer: "Negri Bossi", tonnage: 800, site_id: 1, machine_type: "Injection Moulding", machine_name: "IMM 14")
@@ -77,15 +86,18 @@ Machine.create(manufacturer: "Engel", tonnage: 150, site_id: 3, machine_type: "I
 Machine.create(manufacturer: "Engel", tonnage: 50, site_id: 3, machine_type: "Injection Moulding", machine_name: "M72")
 Machine.create(manufacturer: "Engel", tonnage: 400, site_id: 3, machine_type: "Injection Moulding", machine_name: "M74")
 Machine.create(manufacturer: "Negri Bossi", tonnage: 500, site_id: 3, machine_type: "Injection Moulding", machine_name: "M75")
+puts "Machines created."
 
-
+puts "Creating technicians..."
 Technician.create(first_name: "Andy", last_name: "Dicken", site_id: 1)
 Technician.create(first_name: "Roy", last_name: "Pee", site_id: 1)
 Technician.create(first_name: "Ovidiu", last_name: "Stroie", site_id: 2)
 Technician.create(first_name: "Shane", last_name: "Smith", site_id: 2)
 Technician.create(first_name: "Brian", last_name: "Smith", site_id: 3)
 Technician.create(first_name: "Darryl", last_name: "Ainslie", site_id: 3)
+puts "Technicians created."
 
+puts "Creating tools..."
 Tool.create(tool_name: "MAG69", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
 Tool.create(tool_name: "MAG70", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
 Tool.create(tool_name: "MAG71", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
@@ -95,10 +107,67 @@ Tool.create(tool_name: "MAG74", customer: "Magna", part_nos: ["MAG-34567", "MAG-
 Tool.create(tool_name: "MAG75", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
 Tool.create(tool_name: "MAG76", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
 Tool.create(tool_name: "MAG77", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+puts "Tools created."
 
-Setting.create(tool_id: 1, machine_id: 1, technician_id: 1, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
-Setting.create(tool_id: 2, machine_id: 1, technician_id: 2, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
-Setting.create(tool_id: 1, machine_id: 1, technician_id: 2, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
-Setting.create(tool_id: 2, machine_id: 1, technician_id: 1, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
-Setting.create(tool_id: 3, machine_id: 1, technician_id: 3, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
-Setting.create(tool_id: 4, machine_id: 1, technician_id: 4, shot_weight: 50, sprue_weight: 10, nozzle_temp: 150, zone1_temp: 180, zone2_temp: 160, zone3_temp: 150, shot_size: 200, switchover_position: 200, decompression_after_screw: 200, decompression_before_screw: 200, screw_rpm: 200, back_pressure: 200, sprue_break: 200, injection_pressure: 200, injection_time: 200, screwback_time: 200, cushion: 200, cooling_time: 200, cycle_time: 200, clamping_force: 200, technicians_rating: 5, technicians_comments: "Good")
+# create array of numbers between 100 and 250
+temps = (100..250).to_a
+
+# create array of numbers between 1 and 6
+technicians = (1..6).to_a
+
+machines = (1..58).to_a
+
+tools = (1..9).to_a
+
+weights = (1..1000).to_a
+
+puts "Creating settings..."
+100.times do
+  Setting.create!(
+    machine_id: machines.sample,
+    tool_id: rand(1..9),
+    technician_id: technicians.sample,
+    shot_weight: weights.sample,
+    sprue_weight: weights.sample,
+    nozzle_temp: temps.sample,
+    zone1_temp: temps.sample,
+    zone2_temp: temps.sample,
+    zone3_temp: temps.sample,
+    zone4_temp: temps.sample,
+    zone5_temp: temps.sample,
+    zone6_temp: temps.sample,
+    fh_temp: temps.sample,
+    mh_temp: temps.sample,
+    hr_zone1_temp: temps.sample,
+    hr_zone2_temp: temps.sample,
+    hr_zone3_temp: temps.sample,
+    hr_zone4_temp: temps.sample,
+    hr_zone5_temp: temps.sample,
+    hr_zone6_temp: temps.sample,
+    hr_zone7_temp: temps.sample,
+    hr_zone8_temp: temps.sample,
+    hr_zone9_temp: temps.sample,
+    hr_zone10_temp: temps.sample,
+    hr_zone11_temp: temps.sample,
+    hr_zone12_temp: temps.sample,
+    shot_size: weights.sample,
+    switchover_position: rand(1..100),
+    decompression_after_screw: rand(1..100),
+    decompression_before_screw: rand(1..100),
+    screw_rpm: rand(1..100),
+    back_pressure: rand(1..100),
+    sprue_break: rand(1..100),
+    injection_pressure: rand(1..100),
+    injection_time: rand(10..50),
+    screwback_time: rand(1..50),
+    cushion: rand(1..50),
+    cooling_time: rand(20..50),
+    cycle_time: rand(10..360),
+    clamping_force: rand(50..1000),
+    technicians_rating: rand(1..5),
+    technicians_comments: "This is a comment from the technician."
+  )
+end
+
+puts "Settings created."
+puts "Seeding complete."
