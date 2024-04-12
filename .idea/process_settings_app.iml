@@ -575,11 +575,6 @@
               </RakeTaskImpl>
             </subtasks>
           </RakeTaskImpl>
-          <RakeTaskImpl id="yarn">
-            <subtasks>
-              <RakeTaskImpl description="Install all JavaScript dependencies as specified via Yarn" fullCommand="yarn:install" id="install" />
-            </subtasks>
-          </RakeTaskImpl>
           <RakeTaskImpl id="zeitwerk">
             <subtasks>
               <RakeTaskImpl description="Check project structure for Zeitwerk compatibility" fullCommand="zeitwerk:check" id="check" />
