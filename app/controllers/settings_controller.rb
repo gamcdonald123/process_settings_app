@@ -26,7 +26,7 @@ class SettingsController < ApplicationController
   private
 
   def setting_params
-    params.require(:setting).permit()
+    params.require(:setting).permit!.except(:site_id, :technician_id, :created_at, :updated_at)
   end
 
   def set_setting
