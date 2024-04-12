@@ -19,6 +19,7 @@ class SettingsController < ApplicationController
     if @setting.save
       redirect_to @setting
     else
+      puts @setting.errors.full_messages
       render :new
     end
   end
@@ -26,7 +27,7 @@ class SettingsController < ApplicationController
   private
 
   def setting_params
-    params.require(:setting).permit!.except(:site_id, :technician_id, :created_at, :updated_at)
+    params.require(:setting).permit!.except(:site_id, :created_at, :updated_at)
   end
 
   def set_setting

@@ -2,6 +2,10 @@
     <%= form_with(model: @setting, local: true) do |form| %>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto" data-controller="dropdown">
             <div class="mb-4">
+                <%= form.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+            </div>
+            <div class="mb-4">
                 <%= form.label :site_id, "Site", class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= form.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
             </div>
@@ -9,8 +13,12 @@
                 <%= form.label :machine_id, "Machine", class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= form.select :machine_id, [], {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
             </div>
+            <div class="mb-4">
+                <%= form.label :tool_id, "Tool", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :tool_id, options_from_collection_for_select(Tool.all, 'id', 'tool_name'), { prompt: 'Select a tool' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+            </div>
             <% @setting.class.columns_hash.each do |attr_name, attr_info| %>
-                <% if !%w[id technician_id created_at updated_at site_id machine_id technicians_rating technicians_comments].include?(attr_name) %>
+                <% if !%w[id technician_id created_at updated_at site_id machine_id technicians_rating technicians_comments tool_id].include?(attr_name) %>
                     <div class="mb-4">
                         <%= form.label attr_name.titleize, class: "block text-gray-700 text-sm font-bold mb-2" %>
                         <% case attr_info.type %>
@@ -27,12 +35,12 @@
         </div>
         <div class="grid grid-cols-1 gap-4 max-w-2xl mx-auto mt-4">
             <div class="mb-4">
-                <%= form.label :rating, "Rating (1 - 5)", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                <%= form.number_field :rating, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                <%= form.label :technicians_rating, "Rating (1 - 5)", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.number_field :technicians_rating, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             </div>
             <div class="mb-4">
-                <%= form.label :comments, "Comments", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                <%= form.text_area :comments, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                <%= form.label :technicians_comments, "Comments", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.text_area :technicians_comments, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             </div>
         </div>
         <div class="flex items-center justify-between">
