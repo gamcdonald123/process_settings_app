@@ -1,29 +1,44 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="flex justify-center">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  
+    <div class="mb-6">
+      <%= f.label :first_name, class: "text-gray-700 text-md font-bold" %><br />
+      <%= f.text_field :first_name, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autofocus: true, autocomplete: "first_name" %>
+    </div>
+    
+    <div class="mb-6">
+      <%= f.label :last_name, class: "text-gray-700 text-md font-bold" %><br />
+      <%= f.text_field :last_name, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autocomplete: "last_name" %>
+    </div>
+    
+    <div class="mb-6">
+      <%= f.label :email, class: "text-gray-700 text-md font-bold" %><br />
+      <%= f.email_field :email, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autocomplete: "email" %>
+    </div>
+  
+    <div class="mb-6">
+      <%= f.label :site_id, class: "text-gray-700 text-md font-bold" %><br />
+      <%= f.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+    </div>
+  
+    <div class="mb-6">
+      <%= f.label :password, class: "text-gray-700 text-md font-bold" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autocomplete: "new-password" %>
+    </div>
+  
+    <div class="mb-6">
+      <%= f.label :password_confirmation, class: "text-gray-700 text-md font-bold" %><br />
+      <%= f.password_field :password_confirmation, class: "shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autocomplete: "new-password" %>
+    </div>
+  
+    <div class="flex justify-center">
+      <div class="bg-blue-400 text-white w-24 h-12 flex items-center justify-center rounded m-8">
+        <%= f.submit "Sign-up" %>
+      </div>
+    </div>
+  <% end %>
+</div>

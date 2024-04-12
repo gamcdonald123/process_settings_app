@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "esbuild": "^0.20.2",
+    "yarn": "^1.22.22"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  }
+}
