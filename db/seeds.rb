@@ -4,6 +4,7 @@ Tool.destroy_all
 Machine.destroy_all
 Technician.destroy_all
 Site.destroy_all
+User.destroy_all
 puts "All records destroyed."
 
 puts "Resetting primary keys..."
@@ -12,6 +13,7 @@ ActiveRecord::Base.connection.reset_pk_sequence!('tools') # Ensure it's 'tools',
 ActiveRecord::Base.connection.reset_pk_sequence!('machines')
 ActiveRecord::Base.connection.reset_pk_sequence!('technicians') # Ensure it's pluralized
 ActiveRecord::Base.connection.reset_pk_sequence!('sites')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
 puts "Primary keys reset."
 
 puts "Creating sites..."
@@ -110,7 +112,7 @@ puts "Tools created."
 # create array of numbers between 100 and 250
 temps = (100..250).to_a
 
-#create array of numbers between 1 and 6
+# create array of numbers between 1 and 6
 technicians = (1..6).to_a
 
 machines = (1..58).to_a
@@ -121,9 +123,9 @@ weights = (1..1000).to_a
 
 puts "Creating settings..."
 100.times do
-  Setting.create(
+  Setting.create!(
     machine_id: machines.sample,
-    tool_id: tools.sample,
+    tool_id: rand(1..9),
     technician_id: technicians.sample,
     shot_weight: weights.sample,
     sprue_weight: weights.sample,
@@ -162,7 +164,7 @@ puts "Creating settings..."
     cooling_time: rand(20..50),
     cycle_time: rand(10..360),
     clamping_force: rand(50..1000),
-    technicians_rating: rand(1..10),
+    technicians_rating: rand(1..5),
     technicians_comments: "This is a comment from the technician."
   )
 end
