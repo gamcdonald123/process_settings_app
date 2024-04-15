@@ -14,13 +14,21 @@
             </thead>
             <tbody>
                 <% @machines.each do |machine| %>
-                    <tr class="hover:bg-gray-100">
-                        <td class="p-2 border-b border-gray-200 hover:underline"><%= link_to machine.machine_name, machine_path(machine) %></td>
-                        <td class="p-2 border-b border-gray-200"><%= machine.tonnage %></td>
-                        <td class="p-2 border-b border-gray-200"><%= machine.manufacturer %></td>
-                        <td class="p-2 border-b border-gray-200 hover:underline"><%= link_to machine.site.site_name, site_path(machine.site) %></td>
-                    </tr>
-                <% end %>
+                <tr class="hover:bg-gray-100 cursor-pointer" data-controller="machines-table" data-action="click->machines-table#goToMachine" data-machines-table-machine-url-value="<%= machine_path(machine) %>">
+                    <td class="p-2 border-b border-gray-200">
+                        <%= machine.machine_name %>
+                    </td>
+                    <td class="p-2 border-b border-gray-200">
+                        <%= machine.tonnage %>
+                    </td>
+                    <td class="p-2 border-b border-gray-200">
+                        <%= machine.manufacturer %>
+                    </td>
+                    <td class="p-2 border-b border-gray-200">
+                        <%= machine.site.site_name %>
+                    </td>
+                </tr>
+            <% end %>
             </tbody>
         </table>
     </div>

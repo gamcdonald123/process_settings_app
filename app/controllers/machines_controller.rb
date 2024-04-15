@@ -22,7 +22,6 @@ class MachinesController < ApplicationController
   end
 
   def show
-    # create @settings by finding all settings associated with the machine
     @settings = @machine.settings
   end
 
