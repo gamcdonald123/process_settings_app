@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   resources :machines
   resources :tools
   resources :settings
+  get 'settings/:setting_id/versions', to: 'versions#index', as: 'setting_versions'
+  get 'settings/:setting_id/versions/:id', to: 'versions#show', as: 'setting_version'
   root 'pages#home'
 end

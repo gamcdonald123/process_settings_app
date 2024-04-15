@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  before_action :set_setting, only: [:show, :edit, :update, :destroy, :version]
 
   def index
     @settings = Setting.all.order(:id)
@@ -19,7 +19,6 @@ class SettingsController < ApplicationController
     if @setting.save
       redirect_to @setting
     else
-      # render new with unprocesseable entity
       render :new, status: :unprocessable_entity
     end
   end
@@ -39,6 +38,14 @@ class SettingsController < ApplicationController
   def destroy
     @setting.destroy
     redirect_to settings_path
+  end
+
+  def versions
+    @versions = PaperTrail::Version.order(created_at: :desc)
+  end
+
+  def version
+    @version = PaperTrail::Version.find(params[:version_id])
   end
 
   private
