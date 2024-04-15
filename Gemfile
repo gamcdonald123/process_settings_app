@@ -29,8 +29,6 @@ gem "tailwindcss-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'jsbundling-rails'
-
 gem 'paper_trail'
 
 # Use Redis adapter to run Action Cable in production
