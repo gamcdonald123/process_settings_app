@@ -1,7 +1,8 @@
-<h1><%= @machine.machine_name %></h1>
-
-<% @settings.each do |setting| %>
-    <p><%= link_to Tool.find(setting.tool_id) %></p>
-<% end %>
-
-<%= link_to 'Back', machines_path %>
+<div>
+    <h1 class="text-2xl font-bold"><%= @machine.machine_name %></h1>
+    <p><%= @machine.tonnage %>T</p>
+    <p><%= @machine.site.site_name %></p>
+</div>
+<div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 text-center">
+    <%= link_to 'Back', machines_path %>
+</div>
