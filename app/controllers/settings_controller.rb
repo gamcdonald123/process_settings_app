@@ -30,6 +30,7 @@ class SettingsController < ApplicationController
   def update
     if @setting.update(setting_params)
       redirect_to @setting
+      flash[:success] = 'Setting was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
