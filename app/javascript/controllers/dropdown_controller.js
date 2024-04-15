@@ -10,6 +10,7 @@ export default class extends Controller {
     this.updateMachines = this.updateMachines.bind(this);
     this.observer = new MutationObserver(this.updateMachines);
     this.observer.observe(this.element, { childList: true });
+    this.updateMachines();
   }
 
   disconnect() {
