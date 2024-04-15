@@ -1,0 +1,3 @@
+<%= render 'form' %>
+
+<%= link_to 'Delete', setting_path(@setting), turbo_method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
