@@ -82,8 +82,12 @@ class MaintainxApiClient
   end
 
   def save_mould_tools_to_database
+    count = 0
     mould_tools = filtered_assets_by_type
     mould_tools.each do |tool|
+      next if Tool.find_by(name: tool['name'])
+
+      count += 1
       Tool.create(
         name: tool['name'],
         maintainx_id: tool['id'],
@@ -94,5 +98,6 @@ class MaintainxApiClient
                    end
       )
     end
+    puts "Tools added to database: #{count}"
   end
 end
