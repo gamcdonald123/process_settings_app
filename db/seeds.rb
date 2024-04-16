@@ -97,18 +97,6 @@ Technician.create(first_name: "Brian", last_name: "Smith", site_id: 3)
 Technician.create(first_name: "Darryl", last_name: "Ainslie", site_id: 3)
 puts "Technicians created."
 
-puts "Creating tools..."
-Tool.create(name: "MAG69", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG70", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG71", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG72", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG73", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG74", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG75", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG76", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(name: "MAG77", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-puts "Tools created."
-
 # create array of numbers between 100 and 250
 temps = (100..250).to_a
 
@@ -125,7 +113,7 @@ puts "Creating settings..."
 100.times do
   Setting.create!(
     machine_id: machines.sample,
-    tool_id: rand(1..9),
+    # tool_id: rand(1..9),
     technician_id: technicians.sample,
     shot_weight: weights.sample,
     sprue_weight: weights.sample,
