@@ -98,15 +98,15 @@ Technician.create(first_name: "Darryl", last_name: "Ainslie", site_id: 3)
 puts "Technicians created."
 
 puts "Creating tools..."
-Tool.create(tool_name: "MAG69", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG70", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG71", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG72", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG73", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG74", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG75", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG76", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
-Tool.create(tool_name: "MAG77", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG69", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG70", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG71", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG72", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG73", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG74", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG75", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG76", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
+Tool.create(name: "MAG77", customer: "Magna", part_nos: ["MAG-34567", "MAG-45678"])
 puts "Tools created."
 
 # create array of numbers between 100 and 250
