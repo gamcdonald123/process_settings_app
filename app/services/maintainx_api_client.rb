@@ -87,8 +87,7 @@ class MaintainxApiClient
     mould_tools.each do |tool|
       next if Tool.find_by(name: tool['name'])
 
-      count += 1
-      Tool.create(
+      new_tool = Tool.create(
         name: tool['name'],
         maintainx_id: tool['id'],
         tool_type: if tool['assetTypes'].include?('Mould Tool')
@@ -97,7 +96,12 @@ class MaintainxApiClient
                      'Extrusion Tool'
                    end
       )
+      count += 1 if new_tool.persisted?
     end
-    puts "Tools added to database: #{count}"
+    if count > 0
+      puts "Tools added to database: #{count}"
+    else
+      puts 'No tools added to the database.'
+    end
   end
 end
