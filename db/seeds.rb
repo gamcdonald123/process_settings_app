@@ -1,8 +1,8 @@
 puts "Destroying all records..."
 User.destroy_all
 Setting.destroy_all
-Tool.destroy_all
-Machine.destroy_all
+# Tool.destroy_all
+# Machine.destroy_all
 Technician.destroy_all
 Site.destroy_all
 puts "All records destroyed."
