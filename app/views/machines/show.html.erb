@@ -1,7 +1,16 @@
-<h1><%= @machine.machine_name %></h1>
+<h1 class="mb-4 text-2xl font-bold"><%= @machine.machine_name %></h1>
+
+<div class="mb-4">
+    <%= link_to "Back", machines_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
+</div>
 
 <% @settings.each do |setting| %>
-    <p><%= link_to Tool.find(setting.tool_id) %></p>
+    <%= link_to setting_path(setting) do  %>
+        <div class="bg-white rounded-lg shadow p-4 mb-4">
+            <h2><%= setting.tool.name %></h2>
+            <p><%= setting.machine.machine_name %></p>
+            <p><%= setting.machine.site.site_name %></p>
+            <p><%= setting.machine.machine_type %></p>
+        </div>
+    <% end %>
 <% end %>
-
-<%= link_to 'Back', machines_path %>

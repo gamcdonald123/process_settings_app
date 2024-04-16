@@ -11,6 +11,7 @@
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Machine</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Process</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Site</th>
+                <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Versions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,9 @@
                     </td>
                     <td class="p-2 border-b border-gray-200">
                         <%= setting.machine.site.site_name %>
+                    </td>
+                    <td class="p-2 border-b border-gray-200">
+                        <%= setting.versions.count %>
                     </td>
                 </tr>
             <% end %>
