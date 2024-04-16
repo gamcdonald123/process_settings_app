@@ -1,4 +1,4 @@
-<h1 class="text-2xl font-bold"><%= @setting.tool.tool_name %></h1>
+<h1 class="text-2xl font-bold"><%= @setting.tool.name %></h1>
 <h1>Version number: <%= @version.index + 1 %></h1>
 <h1>Created: <%= @version.created_at.strftime("%B %d, %Y %H:%M") %></h1>
 <h1>Updated by: <%= @setting.technician.first_name %> <%= @setting.technician.last_name %></h1>
