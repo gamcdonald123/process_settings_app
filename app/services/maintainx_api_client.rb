@@ -74,34 +74,64 @@ class MaintainxApiClient
     @all_assets
   end
 
-  def filtered_assets_by_type
+  def get_assets
     all_assets = asset_list
+
+    # filter for tools
     tools = all_assets.select do |asset|
       asset['assetTypes'].include?('Mould Tool') || asset['assetTypes'].include?('Extrusion Tool')
     end
+
+    # filter for machines
+    machines = all_assets.select do |asset|
+      asset['assetTypes'].include?('Injection Moulding Machine') || (asset['assetTypes'].include?('Extrusion Line') && asset['name'].include?('Line'))
+    end
+
+    # return tools and machines
+    { tools: tools, machines: machines }
   end
 
-  def save_mould_tools_to_database
+  def save_assets_to_database
     count = 0
-    mould_tools = filtered_assets_by_type
-    mould_tools.each do |tool|
-      next if Tool.find_by(name: tool['name'])
+    assets = get_assets
+    # assets[:tools].each do |tool|
+    #   next if Tool.find_by(name: tool['name'])
 
-      new_tool = Tool.create(
-        name: tool['name'],
-        maintainx_id: tool['id'],
-        tool_type: if tool['assetTypes'].include?('Mould Tool')
-                     'Mould Tool'
-                   elsif tool['assetTypes'].include?('Extrusion Tool')
-                     'Extrusion Tool'
-                   end
+    #   new_tool = Tool.create(
+    #     name: tool['name'],
+    #     maintainx_id: tool['id'],
+    #     tool_type: if tool['assetTypes'].include?('Mould Tool')
+    #                 'Mould Tool'
+    #               elsif tool['assetTypes'].include?('Extrusion Tool')
+    #                 'Extrusion Tool'
+    #               end
+    #   )
+    #   count += 1 if new_tool.persisted?
+    # end
+    # if count > 0
+    #   puts "Tools added to database: #{count}"
+    # else
+    #   puts 'No tools added to the database.'
+    # end
+
+    assets[:machines].each do |machine|
+      # next if Machine.find_by(machine_name: machine['name'])
+
+      new_machine = Machine.create(
+        machine_name: machine['name'],
+        maintainx_id: machine['id'],
+        machine_type: if machine['assetTypes'].include?('Injection Moulding Machine')
+                      'Injection Moulding Machine'
+                      elsif machine['assetTypes'].include?('Extrusion Line') && machine['name'].include?('Line')
+                      'Extrusion Line'
+                      end
       )
-      count += 1 if new_tool.persisted?
+      count += 1 if new_machine.persisted?
     end
-    if count > 0
-      puts "Tools added to database: #{count}"
+    if count.positive?
+      puts "machines added to database: #{count}"
     else
-      puts 'No tools added to the database.'
+      puts 'No machines added to the database.'
     end
   end
 end
