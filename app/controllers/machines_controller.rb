@@ -1,5 +1,4 @@
 class MachinesController < ApplicationController
-
   before_action :set_machine, only: [:show]
 
   def index
@@ -8,6 +7,7 @@ class MachinesController < ApplicationController
     else
       @machines = Machine.all
     end
+
 
     respond_to do |format|
       format.html
