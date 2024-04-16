@@ -2,26 +2,12 @@
     <h1 class="text-3xl p-4">Tools</h1>
 </div>
 
-<div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4">
-
-    <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
-        <thead>
-            <tr class="text-left">
-                <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Tool</th>
-                <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @tools.each do |tool| %>
-                <tr class="hover:bg-gray-100 cursor-pointer" data-controller="tool-table-row" data-action="click->tool-table-row#goToTool" data-tool-table-row-tool-url-value="<%= tool_path(tool) %>">
-                    <td class="p-2 border-b border-gray-200">
-                        <%= tool.name %>
-                    </td>
-                    <td class="p-2 border-b border-gray-200">
-                        <%= tool.tool_type %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+<%= form_with url: "", method: :get do |form| %>
+    <%= form.hidden_field :page, value: params[:page] %>
+    Show <%= form.select :count, options_for_select([10, 25, 50, 100], selected: params[:count]), {}, { onchange: "this.form.requestSubmit()" } %>
+<% end %>
+<div id="tools">
+    <%= render @tools %>
 </div>
+
+<%== pagy_nav @pagy %>
