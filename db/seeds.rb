@@ -4,25 +4,25 @@ Setting.destroy_all
 # Tool.destroy_all
 # Machine.destroy_all
 Technician.destroy_all
-Site.destroy_all
+# Site.destroy_all
 puts "All records destroyed."
 
 puts "Resetting primary keys..."
 ActiveRecord::Base.connection.reset_pk_sequence!('settings')
-ActiveRecord::Base.connection.reset_pk_sequence!('tools') # Ensure it's 'tools', not 'tool'
-ActiveRecord::Base.connection.reset_pk_sequence!('machines')
+# ActiveRecord::Base.connection.reset_pk_sequence!('tools') # Ensure it's 'tools', not 'tool'
+# ActiveRecord::Base.connection.reset_pk_sequence!('machines')
 ActiveRecord::Base.connection.reset_pk_sequence!('technicians') # Ensure it's pluralized
-ActiveRecord::Base.connection.reset_pk_sequence!('sites')
+# ActiveRecord::Base.connection.reset_pk_sequence!('sites')
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 puts "Primary keys reset."
 
-puts "Creating sites..."
-Site.create(site_name: "GFC")
-Site.create(site_name: "GPH")
-Site.create(site_name: "GNW")
-puts "Sites created."
+# puts "Creating sites..."
+# Site.create(site_name: "GFC")
+# Site.create(site_name: "GPH")
+# Site.create(site_name: "GNW")
+# puts "Sites created."
 
-puts "Creating machines..."
+# puts "Creating machines..."
 #GFC Machines
 # Machine.create(manufacturer: "Negri Bossi", tonnage: 1000, site_id: 1, machine_type: "Injection Moulding", machine_name: "IMM 15")
 # Machine.create(manufacturer: "Negri Bossi", tonnage: 800, site_id: 1, machine_type: "Injection Moulding", machine_name: "IMM 14")
