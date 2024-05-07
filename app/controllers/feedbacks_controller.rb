@@ -8,6 +8,7 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
+    @feedback.user = current_user
     if @feedback.save
       redirect_to feedbacks_path, notice: 'Feedback was successfully created.'
     else
@@ -17,7 +18,7 @@ class FeedbacksController < ApplicationController
     # send slack notification
     uri = URI('https://hooks.zapier.com/hooks/catch/9724377/3jt8aec/')
     begin
-      Net::HTTP.post_form(uri, user: @feedback.user, id: @feedback.id)
+      Net::HTTP.post_form(uri, first_name: @feedback.user.first_name, last_name: @feedback.user.last_name, id: @feedback.id)
     rescue StandardError => e
       Rails.logger.error "Failed to trigger Zapier webhook: #{e.message}"
     end
@@ -30,7 +31,7 @@ class FeedbacksController < ApplicationController
   private
 
   def feedback_params
-    params.require(:feedback).permit(:user, :email, :comment)
+    params.require(:feedback).permit(:comment)
   end
 
 end
