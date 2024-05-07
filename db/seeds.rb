@@ -1,5 +1,5 @@
 puts "Destroying all records..."
-# User.destroy_all
+User.destroy_all
 Setting.destroy_all
 # Tool.destroy_all
 # Machine.destroy_all
@@ -9,11 +9,11 @@ puts "All records destroyed."
 
 puts "Resetting primary keys..."
 ActiveRecord::Base.connection.reset_pk_sequence!('settings')
-# ActiveRecord::Base.connection.reset_pk_sequence!('tools') # Ensure it's 'tools', not 'tool'
+# ActiveRecord::Base.connection.reset_pk_sequence!('tools')
 # ActiveRecord::Base.connection.reset_pk_sequence!('machines')
-ActiveRecord::Base.connection.reset_pk_sequence!('technicians') # Ensure it's pluralized
+ActiveRecord::Base.connection.reset_pk_sequence!('technicians') # Ensure it's plur
 # ActiveRecord::Base.connection.reset_pk_sequence!('sites')
-# ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
 puts "Primary keys reset."
 
 # puts "Creating sites..."
