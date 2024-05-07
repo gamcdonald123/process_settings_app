@@ -8,10 +8,10 @@
                 <%= form.submit "Save" %>
             </div>
             <div class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            <%= link_to 'Delete', setting_path(@setting), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+              <%= link_to "Delete", @setting, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
             </div>
         </div>
-        <h2 class="block text-gray-700 text-2xl font-bold mb-4">Main</h2>
+        <h2 class="block text-gray-700 text-902xl font-bold mb-4">Main</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4">
             <div class="mb-4">
                 <%= form.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
@@ -30,7 +30,7 @@
                         <%= form.label attr_name.gsub(/(?<=\D)(\d)/, ' \1')
                         .gsub(/\bmh\b/i, 'MH')
                         .gsub(/\bfh\b/i, 'FH')
-                        .gsub(/\bhr\b/i, 'HR'), 
+                        .gsub(/\bhr\b/i, 'HR'),
                         class: "block text-gray-700 text-sm font-bold mb-2" %>
                         <% case attr_info.type %>
                         <% when :string, :text %>
@@ -77,5 +77,5 @@
     <% end %>
 </div>
 <div>
-    
+
 </div>
