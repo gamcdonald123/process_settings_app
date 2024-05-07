@@ -105,8 +105,9 @@ class MaintainxApiClient
                         'Extrusion Line'
                       end,
         site_id: site_id, # Storing the site name or ID as determined above
-        manufacturer: machine['manufacturer'],
-        manufacture_year: machine['year']
+        manufacturer: machine['extraFields']['Manufacturer'],
+        manufacture_year: machine['extraFields']['Year'],
+        tonnage: machine['extraFields']['Tonnage']
       )
 
       machine_count += 1 if new_machine.persisted?
