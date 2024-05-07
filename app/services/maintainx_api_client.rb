@@ -87,7 +87,7 @@ class MaintainxApiClient
 
     assets[:machines].each do |machine|
       # Only proceed if machine does not already exist in the database
-      next if Machine.exists?(machine_name: machine['name'])
+      next if Machine.exists?(machine_name: machine['name'], tonnage: machine['extraFields']['Tonnage'])
 
       # Map site ID to a meaningful site name or directly store the site ID
       site_id = case machine['site']
