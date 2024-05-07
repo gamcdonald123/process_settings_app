@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_094724) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_144023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
 
   create_table "machines", force: :cascade do |t|
     t.string "manufacturer"
@@ -128,6 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_094724) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "machines", "sites"
   add_foreign_key "settings", "machines"
   add_foreign_key "settings", "technicians"
