@@ -42,7 +42,7 @@ class FeedbacksController < ApplicationController
     if @reply.save
       redirect_to feedback_path(@feedback), notice: 'Replied!'
     else
-      render :show, alert: 'Failed to reply'
+      render :show, flash[:alert] = 'Failed to reply'
     end
   end
 
@@ -56,4 +56,7 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.find(params[:id])
   end
 
+  def reply_params
+    params.require(:reply).permit(:content, :feedback_id)
+  end
 end

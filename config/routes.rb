@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :tools
   resources :settings
   resources :feedbacks, only: [:new, :create, :index, :show] do
-    resources :replies, only: [:create]
+    post 'reply', on: :member
   end
   get 'settings/:setting_id/versions', to: 'versions#index', as: 'setting_versions'
   get 'settings/:setting_id/versions/:id', to: 'versions#show', as: 'setting_version'
