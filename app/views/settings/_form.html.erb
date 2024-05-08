@@ -1,4 +1,4 @@
-<div class="flex justify-center">
+<div class="flex justify-center text-left">
     <%= form_with(model: @setting, local: true) do |form| %>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4" data-controller="dropdown">
             <div class="mb-4">
@@ -19,31 +19,84 @@
             </div>
         </div>
 
-        <h2 class="blcok text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <% @setting.attributes.keys.each do |attr_name| %>
-                <% attr_info = @setting.column_for_attribute(attr_name) %>
-                <% if attr_name.include?('temp') && !%w[id technician_id created_at updated_at site_id machine_id technicians_rating technicians_comments tool_id].include?(attr_name) %>
-                    <div class="mb-4">
-                        <%= form.label attr_name.gsub(/(?<=\D)(\d)/, ' \1')
-                        .gsub(/\bmh\b/i, 'MH')
-                        .gsub(/\bfh\b/i, 'FH')
-                        .gsub(/\bhr\b/i, 'HR'), 
-                        class: "block text-gray-700 text-sm font-bold mb-2" %>
-                        <% case attr_info.type %>
-                        <% when :string, :text %>
-                            <%= form.text_field attr_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                        <% when :integer, :float, :decimal %>
-                            <%= form.number_field attr_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                        <% when :boolean %>
-                            <%= form.check_box attr_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                        <% end %>
+        <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h1 class="font-bold text-gray-700">Hot Runner</h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <%# Hot runner temperates. Change number to change fields %>
+                <% 24.times do |i| %>
+                    <div class="w-full md:w-1/2 lg:w-1/4">
+                        <%= form.label "hr_zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
+                        <%= form.number_field "hr_zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-
-        <div class="group">
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h1 class="font-bold text-gray-700">Barrel</h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <%# Hot runner temperates. Change number to change fields %>
+                <% 12.times do |i| %>
+                    <div class="w-full md:w-1/2 lg:w-1/4">
+                        <%= form.label "zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
+                        <%= form.number_field "zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-4">Injection</h2>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Opening</h2>
+            <div class="flex justify-between mb-6">
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "opening_stroke", "Opening Stroke", class: "text-sm mb-4" %>
+                        <%= form.number_field "opening_stroke", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "ejection_cycles", "Ejection Cycles", class: "text-sm mb-4" %>
+                        <%= form.number_field "ejection_cycles", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <% 3.times do |i| %>
+                    <div class="flex flex-col border rounded p-4">
+                        <div>
+                            <%= form.label "Speed #{i+1}", class: "text-sm mb-2" %>
+                            <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                        </div>
+                        <div>
+                            <%= form.label "Position #{i+1}", class: "text-sm mb-2" %>
+                            <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Closing</h2>
+            <div class="flex justify-between mb-6">
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "closing_pressure", "Closing Pressure", class: "text-sm mb-4" %>
+                    <%= form.number_field "closing_pressure", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "locking_tonnage", "Locking Tonnage", class: "text-sm mb-4" %>
+                    <%= form.number_field "locking_tonnage", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <% 3.times do |i| %>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "Speed #{i+1}", class: "text-sm mb-2" %>
+                        <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                        <%= form.label "Position #{i+1}", class: "text-sm mb-2" %>
+                        <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        
+        <div class="section border border-black rounded shadow-md p-4">
             <h2>Other Attributes</h2>
             <% @setting.attributes.keys.each do |attr_name| %>
                 <% attr_info = @setting.column_for_attribute(attr_name) %>

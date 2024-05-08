@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_110837) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_130816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -91,6 +91,43 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_110837) do
     t.text "technicians_comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hr_zone13_temp"
+    t.integer "hr_zone14_temp"
+    t.integer "hr_zone15_temp"
+    t.integer "hr_zone16_temp"
+    t.integer "hr_zone17_temp"
+    t.integer "hr_zone18_temp"
+    t.integer "hr_zone19_temp"
+    t.integer "hr_zone20_temp"
+    t.integer "hr_zone21_temp"
+    t.integer "hr_zone22_temp"
+    t.integer "hr_zone23_temp"
+    t.integer "hr_zone24_temp"
+    t.integer "zone7_temp"
+    t.integer "zone8_temp"
+    t.integer "zone9_temp"
+    t.integer "zone10_temp"
+    t.integer "zone11_temp"
+    t.integer "zone12_temp"
+    t.integer "opening_speed_1"
+    t.integer "opening_speed_2"
+    t.integer "opening_speed_3"
+    t.integer "opening_position_1"
+    t.integer "opening_position_2"
+    t.integer "opening_position_3"
+    t.integer "opening_stroke"
+    t.integer "ejection_cycles"
+    t.integer "closing_speed_1"
+    t.integer "closing_speed_2"
+    t.integer "closing_speed_3"
+    t.integer "closing_position_1"
+    t.integer "closing_position_2"
+    t.integer "closing_position_3"
+    t.integer "closing_pressure"
+    t.integer "locking_tonnage"
+    t.integer "mould_safety_position"
+    t.integer "mould_safety_pressure"
+    t.integer "clamp_lockup_position"
     t.index ["machine_id"], name: "index_settings_on_machine_id"
     t.index ["technician_id"], name: "index_settings_on_technician_id"
     t.index ["tool_id"], name: "index_settings_on_tool_id"
