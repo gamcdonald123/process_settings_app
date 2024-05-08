@@ -12,14 +12,16 @@
                     <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">ID</th>
                     <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">User</th>
                     <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Comment</th>
+                    <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <% @feedbacks.each do |feedback| %>
-                    <tr class="hover:bg-gray-100" data-controller="feedback-table-row" data-action="click->feedback-table-row#goToFeedback" data-feedback-table-row-feedback-url-value="<%= feedback_path(feedback.id) %>">
+                    <tr class="hover:bg-gray-100 cursor-pointer" data-controller="feedback-table-row" data-action="click->feedback-table-row#goToFeedback" data-feedback-table-row-feedback-url-value="<%= feedback_path(feedback.id) %>">
                         <td class="p-2 border-b border-gray-200"><%= feedback.id %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.user.email %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.comment %></td>
+                        <td class="p-2 border-b border-gray-200"><%= feedback.status %></td>
                     </tr>
                 <% end %>
             </tbody>

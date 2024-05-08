@@ -16,6 +16,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     @feedback.user = current_user
+    @feedback.status = 'Open'
     if @feedback.save
       redirect_to feedbacks_path, notice: 'Feedback was successfully created.'
     else
