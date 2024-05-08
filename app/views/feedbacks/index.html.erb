@@ -2,6 +2,9 @@
     <div class="bg-sky-100 text-center rounded mb-4">
         <h1 class="text-3xl p-4">Feedback</h1>
     </div>
+    <div class="bg-blue-500 text-white w-36 text-center py-1 rounded mb-4">
+        <%= link_to 'Add feedback', new_feedback_path %>
+    </div>
     <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4">
         <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
             <thead>
@@ -13,16 +16,13 @@
             </thead>
             <tbody>
                 <% @feedbacks.each do |feedback| %>
-                    <tr class="hover:bg-gray-100">
-                        <td class="p-2 border-b border-gray-200 hover:underline"><%= link_to feedback.id, feedbacks_path(feedback) %></td>
+                    <tr class="hover:bg-gray-100" data-controller="feedback-table-row" data-action="click->feedback-table-row#goToFeedback" data-feedback-table-row-feedback-url-value="<%= feedback_path(feedback.id) %>">
+                        <td class="p-2 border-b border-gray-200"><%= feedback.id %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.user.email %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.comment %></td>
                     </tr>
                 <% end %>
             </tbody>
         </table>
-    </div>
-    <div class="bg-blue-500 text-white w-36 text-center py-1 rounded">
-        <%= link_to 'Add feedback', new_feedback_path %>
     </div>
 </div>

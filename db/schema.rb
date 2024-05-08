@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_144023) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_083519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_144023) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
@@ -33,6 +34,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_144023) do
     t.datetime "updated_at", null: false
     t.string "machine_name"
     t.index ["site_id"], name: "index_machines_on_site_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "content"
+    t.bigint "feedback_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feedback_id"], name: "index_replies_on_feedback_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -138,6 +147,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_144023) do
 
   add_foreign_key "feedbacks", "users"
   add_foreign_key "machines", "sites"
+  add_foreign_key "replies", "feedbacks"
   add_foreign_key "settings", "machines"
   add_foreign_key "settings", "technicians"
   add_foreign_key "settings", "tools"

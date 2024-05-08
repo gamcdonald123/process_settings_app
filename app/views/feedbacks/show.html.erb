@@ -1,0 +1,12 @@
+<h1><%= @feedback.comment %></h1>
+
+<h2>Replies</h2>
+<% @replies.each do |reply| %>
+  <p><%= reply.content %></p>
+<% end %>
+
+<%= form_with model: [@feedback, @reply], local: true do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+  <%= form.submit "Post Reply" %>
+<% end %>
