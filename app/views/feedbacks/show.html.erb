@@ -1,4 +1,4 @@
-<div class="flex justify-center flex-col mb-4">
+<div class="flex justify-center flex-col mb-4 border-b py-4">
   <h1><%= @feedback.user.first_name %> says:</h1>
   <br>
   <h1><%= @feedback.comment %></h1>
@@ -8,8 +8,9 @@
   <h2 class="text-xl font-semibold mb-4">Replies:</h2>
   <% @replies.each do |reply| %>
     <div class="mb-4">
-      <p class="font-bold"><%= reply.user.first_name %> <%= reply.user.last_name %>:</p>
-      <p><%= reply.content %></p>
+      <p class="font-bold text-green-300 mb-1"><%= reply.user.first_name %> <%= reply.user.last_name %>:</p>
+      <p class="mb-1"><%= reply.content %></p>
+      <p class="text-gray-400 mb-1"><em><%= reply.created_at %></em></p>
     </div>
   <% end %>
 </div>
