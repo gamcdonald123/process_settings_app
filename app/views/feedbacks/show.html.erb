@@ -1,0 +1,25 @@
+<div class="flex justify-center flex-col mb-4 border-b py-4">
+  <h1><%= @feedback.user.first_name %> says:</h1>
+  <br>
+  <h1><%= @feedback.comment %></h1>
+</div>
+
+<div class="border-t border-black border-solid">
+  <h2 class="text-xl font-semibold mb-4">Replies:</h2>
+  <% @replies.each do |reply| %>
+    <div class="mb-4">
+      <p class="font-bold text-green-300 mb-1"><%= reply.user.first_name %> <%= reply.user.last_name %>:</p>
+      <p class="mb-1"><%= reply.content %></p>
+      <p class="text-gray-400 mb-1"><em><%= reply.created_at %></em></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="">
+  <%= form_with model: [@feedback, Reply.new], url: reply_feedback_path(@feedback), local: true, class: "space-y-4" do |form| %>
+    <div class="flex flex-col">
+      <%= form.text_area :content, class: "form-input mt-1 block w-3/4 p-2 border border-gray-300 rounded-md" %>
+    </div>
+    <%= form.submit "Post Reply", class: "mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" %>
+  <% end %>
+</div>
