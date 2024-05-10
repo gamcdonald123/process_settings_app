@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_122842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.integer "locking_tonnage"
     t.integer "mould_safety_position"
     t.integer "mould_safety_pressure"
-    t.integer "clamp_lockup_position"
+    t.float "clamp_lockup_position"
     t.integer "ejection_forward_speed_1"
     t.integer "ejection_forward_speed_2"
     t.integer "ejection_forward_position_1"
@@ -161,26 +161,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.integer "injection_position_6"
     t.integer "injection_pressure_6"
     t.integer "holding_pressure_1"
-    t.integer "holding_pressure_time_1"
+    t.float "holding_pressure_time_1"
     t.integer "holding_pressure_speed_1"
     t.integer "holding_pressure_2"
-    t.integer "holding_pressure_time_2"
+    t.float "holding_pressure_time_2"
     t.integer "holding_pressure_speed_2"
     t.integer "holding_pressure_3"
-    t.integer "holding_pressure_time_3"
+    t.float "holding_pressure_time_3"
     t.integer "holding_pressure_speed_3"
     t.integer "holding_pressure_4"
-    t.integer "holding_pressure_time_4"
+    t.float "holding_pressure_time_4"
     t.integer "holding_pressure_speed_4"
     t.integer "holding_pressure_5"
-    t.integer "holding_pressure_time_5"
+    t.float "holding_pressure_time_5"
     t.integer "holding_pressure_speed_5"
     t.integer "holding_pressure_6"
-    t.integer "holding_pressure_time_6"
+    t.float "holding_pressure_time_6"
     t.integer "holding_pressure_speed_6"
     t.integer "screw_speed"
     t.integer "ejector_stroke"
-    t.integer "cushion_position"
+    t.float "cushion_position"
     t.index ["machine_id"], name: "index_settings_on_machine_id"
     t.index ["technician_id"], name: "index_settings_on_technician_id"
     t.index ["tool_id"], name: "index_settings_on_tool_id"

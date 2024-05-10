@@ -19,6 +19,7 @@ class SettingsController < ApplicationController
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
       render :new, status: :unprocessable_entity
+      puts @setting.errors.full_messages
     end
   end
 
