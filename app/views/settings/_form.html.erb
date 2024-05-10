@@ -1,7 +1,7 @@
-<div class="flex justify-center text-left max-w-2xl mx-auto">
+<div class="flex justify-center text-left">
     <%= form_with(model: @setting, local: true) do |form| %>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Information</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4" data-controller="dropdown">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4" data-controller="dropdown">
             <div class="mb-4">
                 <%= form.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= form.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
@@ -23,28 +23,28 @@
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
         <div class="section border border-black rounded shadow-md p-4 mb-4">
             <h1 class="font-bold text-gray-700">Hot Runner</h1>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                <%# Hot runner temperates. Change number to change fields %>
-                <% 24.times do |i| %>
-                    <div class="w-full md:w-1/2 lg:w-1/4">
-                        <%= form.label "hr_zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
-                        <%= form.number_field "hr_zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                <% end %>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+              <% 24.times do |i| %>
+                <div class="w-full md:w-1/2 lg:w-1/4 min-w-[150px]">
+                  <%= form.label "hr_zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
+                  <%= form.number_field "hr_zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+              <% end %>
             </div>
+
         </div>
         <div class="section border border-black rounded shadow-md p-4 mb-4">
             <h1 class="font-bold text-gray-700">Barrel</h1>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
                 <%# Barrel temperates. Change number to change fields %>
                 <%# Nozzle %>
-                <div class="w-full md:w-1/2 lg:w-1/4">
+                <div class="w-full md:w-1/2 lg:w-1/4 min-w-[150px]">
                         <%= form.label "nozzle_temp", "Nozzle", class: "text-sm" %>
                         <%= form.number_field "nozzle_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
                 <%# Zones %>
                 <% 12.times do |i| %>
-                    <div class="w-full md:w-1/2 lg:w-1/4">
+                    <div class="w-full md:w-1/2 lg:w-1/4 min-w-[150px]">
                         <%= form.label "zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
                         <%= form.number_field "zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
