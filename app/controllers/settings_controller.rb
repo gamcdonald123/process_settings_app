@@ -20,6 +20,7 @@ class SettingsController < ApplicationController
       redirect_to @setting
     else
       render :new, status: :unprocessable_entity
+      puts @setting.errors.full_messages
     end
   end
 
