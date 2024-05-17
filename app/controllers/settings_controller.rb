@@ -6,6 +6,9 @@ class SettingsController < ApplicationController
     @tool = Tool.all
   end
 
+  def test
+  end
+
   def show
   end
 

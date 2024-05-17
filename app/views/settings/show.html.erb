@@ -1,53 +1,18 @@
-<div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold text-left mb-4">Settings</h1>
-    <h1 class="text-2xl font-bold text-left mb-4"><%= @setting.tool.name %></h1>
-    <h1 class="text-xl font-bold text-left mb-4">v<%= @setting.versions.count %></h1>
-    <div class="flex">
-        <div>
-            <%= link_to "Back", settings_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
-        <div>
-            <%= link_to "Edit", edit_setting_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
-        <div>
-            <%= link_to "Versions", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 mt-4">
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Technician</h2>
-            <p><%= Technician.find(@setting.technician_id).first_name %> <%= Technician.find(@setting.technician_id).last_name %></p>
-        </div>
-
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Machine</h2>
-            <p>Name: <%= link_to @setting.machine.machine_name, machine_path(@setting.machine_id) %></p>
-            <p>Tonnage: <%= @setting.machine.tonnage %>T</p>
-            <p>Site: <%= @setting.machine.site.site_name %></p>
-        </div>
-
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Dates</h2>
-            <% @setting.attributes.each do |attr_name, attr_value| %>
-                <% if attr_value.present? && %w[created_at updated_at].include?(attr_name) %>
-                    <div class="flex justify-between border-b py-2">
-                        <strong><%= attr_name.humanize %>:</strong>
-                        <span><%= attr_value.strftime("%B %d, %Y") %></span>
-                    </div>
+<div class="w-full p-4">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-700 mb-4">Temperatures</h1>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h1 class="font-bold text-gray-700 mb-4">Hot Runner</h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <% 24.times do |i| %>
+                    <% if @setting.send("hr_zone#{i+1}_temp").present? %>
+                        <div class="w-full md:w-1/2 lg:w-1/4 border rounded p-4">
+                            <p class="text-gray-700 mb-2"><%= "Zone #{i+1}" %></p>
+                            <p class="text-gray-700"><%= @setting.send("hr_zone#{i+1}_temp") %></p>
+                        </div>
+                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-    </div>
-
-    <div class="p-4 bg-white rounded shadow border">
-        <h2 class="text-xl font-bold mb-2">Setting Details</h2>
-        <% @setting.attributes.each do |attr_name, attr_value| %>
-            <% if attr_value.present? && !%w[id tool_id machine_id technician_id created_at updated_at].include?(attr_name) %>
-                <div class="flex justify-between border-b py-2">
-                    <strong><%= attr_name.humanize %>:</strong>
-                    <span><%= attr_value %></span>
-                </div>
-            <% end %>
-        <% end %>
     </div>
 </div>
