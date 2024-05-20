@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_20_122215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,12 +27,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.string "manufacturer"
     t.integer "tonnage"
     t.bigint "site_id", null: false
-    t.date "manufacture_year"
     t.string "maintainx_id"
     t.string "machine_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "machine_name"
+    t.integer "injection_unit"
+    t.integer "screw_diameter"
+    t.integer "max_injection_volume"
+    t.integer "max_opening_stroke"
+    t.integer "min_mould_height"
+    t.integer "max_mould_height"
+    t.boolean "sequential_control"
+    t.integer "platen_width"
+    t.integer "platen_height"
+    t.integer "tie_bar_width"
+    t.integer "tie_bar_height"
+    t.integer "ejector_stroke"
+    t.integer "location_ring_size"
+    t.integer "max_power"
+    t.integer "air_valves"
+    t.integer "hydraulic_valves"
+    t.integer "year_of_manufacture"
     t.index ["site_id"], name: "index_machines_on_site_id"
   end
 
@@ -127,7 +143,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.integer "locking_tonnage"
     t.integer "mould_safety_position"
     t.integer "mould_safety_pressure"
-    t.integer "clamp_lockup_position"
+    t.float "clamp_lockup_position"
     t.integer "ejection_forward_speed_1"
     t.integer "ejection_forward_speed_2"
     t.integer "ejection_forward_position_1"
@@ -161,26 +177,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.integer "injection_position_6"
     t.integer "injection_pressure_6"
     t.integer "holding_pressure_1"
-    t.integer "holding_pressure_time_1"
+    t.float "holding_pressure_time_1"
     t.integer "holding_pressure_speed_1"
     t.integer "holding_pressure_2"
-    t.integer "holding_pressure_time_2"
+    t.float "holding_pressure_time_2"
     t.integer "holding_pressure_speed_2"
     t.integer "holding_pressure_3"
-    t.integer "holding_pressure_time_3"
+    t.float "holding_pressure_time_3"
     t.integer "holding_pressure_speed_3"
     t.integer "holding_pressure_4"
-    t.integer "holding_pressure_time_4"
+    t.float "holding_pressure_time_4"
     t.integer "holding_pressure_speed_4"
     t.integer "holding_pressure_5"
-    t.integer "holding_pressure_time_5"
+    t.float "holding_pressure_time_5"
     t.integer "holding_pressure_speed_5"
     t.integer "holding_pressure_6"
-    t.integer "holding_pressure_time_6"
+    t.float "holding_pressure_time_6"
     t.integer "holding_pressure_speed_6"
     t.integer "screw_speed"
     t.integer "ejector_stroke"
-    t.integer "cushion_position"
+    t.float "cushion_position"
+    t.string "tool_heater_type"
     t.index ["machine_id"], name: "index_settings_on_machine_id"
     t.index ["technician_id"], name: "index_settings_on_technician_id"
     t.index ["tool_id"], name: "index_settings_on_tool_id"
