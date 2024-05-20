@@ -2,7 +2,7 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy, :version]
 
   def index
-    @settings = Setting.all.order(:id)
+    @settings = Setting.joins(:tool).order('tools.name')
     @tool = Tool.all
   end
 
