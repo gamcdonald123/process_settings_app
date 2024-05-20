@@ -83,6 +83,7 @@ class MaintainxApiClient
                   end
       )
       tool_count += 1 if new_tool.persisted?
+      puts new_tool.name
     end
 
     assets[:machines].each do |machine|

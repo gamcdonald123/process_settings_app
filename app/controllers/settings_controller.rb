@@ -15,11 +15,11 @@ class SettingsController < ApplicationController
 
   def create
     @setting = Setting.new(setting_params)
-
     if @setting.save
-      redirect_to @setting
+      redirect_to @setting, notice: 'Setting was successfully created.'
     else
       render :new, status: :unprocessable_entity
+      puts @setting.errors.full_messages
     end
   end
 
@@ -37,7 +37,7 @@ class SettingsController < ApplicationController
 
   def destroy
     @setting.destroy
-    redirect_to settings_path
+    redirect_to settings_path, notice: 'Setting was successfully deleted.'
   end
 
   def versions
