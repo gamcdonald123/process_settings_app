@@ -1,0 +1,366 @@
+<div class="container mx-auto">
+    <div class="w-full p-4">
+        <div class="flex">
+            <div class="mb-4 mr-4">
+                <%= link_to "Back", settings_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
+            </div>
+            <div class="mb-4 mr-4">
+                <%= link_to "Edit", edit_setting_path(params[:id]), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
+            </div>
+            <div class="mb-4">
+                <%= link_to "Versions", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <h1 class="text-2xl font-bold text-gray-700 mb-4">Main Information</h1>
+            <div class="section border border-black rounded shadow-md p-4">
+                <div class="flex justify-center mb-4">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Originator</h1>
+                        <p class="text-gray-700"><%= @setting.technician.first_name %> <%= @setting.technician.last_name %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Cycle Time</h1>
+                        <p class="text-gray-700"><%= @setting.cycle_time %>s</p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Machine</h1>
+                        <p class="text-gray-700"><%= @setting.machine.machine_name %></p>
+                    </div>
+                    <div class="w-full border rounded p-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Tool</h1>
+                        <p class="text-gray-700"><%= @setting.tool.name %></p>
+                    </div>
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Impressions</h1>
+                        <p class="text-gray-700">to do</p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Shot Weight</h1>
+                        <p class="text-gray-700"><%= @setting.shot_weight %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Part Weight</h1>
+                        <% if @setting.shot_weight.present? && @setting.sprue_weight.present? %>
+                            <p class="text-gray-700"><%= @setting.shot_weight - @setting.sprue_weight %></p>
+                        <% end %>
+                    </div>
+                    <div class="w-full border rounded p-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Part Number</h1>
+                        <p class="text-gray-700">todo</p>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Version</h1>
+                        <p class="text-gray-700">v<%= @setting.versions.count %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Last Updated By</h1>
+                        <p class="text-gray-700"><%= User.find(@setting.versions.last.whodunnit).first_name %> <%= User.find(@setting.versions.last.whodunnit).last_name %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Last Updated</h1>
+                        <p class="text-gray-700"><%= @setting.versions.last.created_at %></p>
+                    </div>
+                </div>
+            </div>
+    
+            <h1 class="text-2xl font-bold text-gray-700 mb-4 mt-4">Temperatures</h1>
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <h1 class="font-bold text-gray-700 mb-4 text-xl">Drying</h1>
+                <div class="flex justify-center">
+                    <div class="w-1/2 border rounded p-4 mb-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Drying time</h1>
+                        <p class="text-gray-700"><%= @setting.drying_time %> hours</p>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Moving Half</h1>
+                        <p class="text-gray-700"><%= @setting.mh_temp %>°C</p>
+                    </div>
+                    <div class="w-full border rounded p-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Fixed Half</h1>
+                        <p class="text-gray-700"><%= @setting.fh_temp %>°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <h1 class="font-bold text-gray-700 mb-4 text-xl">Tool Temperatures</h1>
+                <div class="flex justify-center">
+                    <div class="w-1/2 border rounded p-4 mb-4 ">
+                        <h1 class="font-bold text-gray-700 mb-4">Heater Type</h1>
+                        <p class="text-gray-700"><%= @setting.tool_heater_type %></p>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Moving Half</h1>
+                        <p class="text-gray-700"><%= @setting.mh_temp %>°C</p>
+                    </div>
+                    <div class="w-full border rounded p-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Fixed Half</h1>
+                        <p class="text-gray-700"><%= @setting.fh_temp %>°C</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <h1 class="font-bold text-gray-700 mb-4 text-xl">Hot Runner</h1>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <% 24.times do |i| %>
+                        <% if @setting.send("hr_zone#{i+1}_temp").present? %>
+                            <div class="w-full md:w-1/2 lg:w-1/4 border rounded p-4">
+                                <p class="text-gray-700 mb-2 font-bold"><%= "Zone #{i+1}" %></p>
+                                <p class="text-gray-700"><%= @setting.send("hr_zone#{i+1}_temp") %> °C</p>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <h1 class="font-bold text-gray-700 mb-4 text-xl">Barrel</h1>
+                <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                    <div class="w-full md:w-1/2 lg:w-1/8 border rounded p-4">
+                        <p class="text-gray-700 mb-2 font-bold"><%= "Nozzle" %></p>
+                        <p class="text-gray-700"><%= @setting.send("nozzle_temp") %> °C</p>
+                    </div>
+                    <% 12.times do |i| %>
+                        <% if @setting.send("zone#{i+1}_temp").present? %>
+                            <div class="w-full md:w-1/2 lg:w-1/4 border rounded p-4">
+                                <p class="text-gray-700 mb-2 font-bold"><%= "Zone #{i+1}" %></p>
+                                <p class="text-gray-700"><%= @setting.send("zone#{i+1}_temp") %> °C</p>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-700 mb-4">Injection</h1>
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <div class="flex justify-center mb-4">
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Shot Size</h1>
+                        <p class="text-gray-700"><%= @setting.shot_size %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Decompression Before</h1>
+                        <p class="text-gray-700"><%= @setting.decompression_before_screw %></p>
+                    </div>
+                    <div class="w-full border rounded p-4 mr-4">
+                        <h1 class="font-bold text-gray-700 mb-4">Decompression After</h1>
+                        <p class="text-gray-700"><%= @setting.decompression_after_screw %></p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start w-full">
+                    <div class="border p-4 mb-4 md:mb-0 md:w-1/2 rounded">
+                        <h1 class="font-bold text-gray-700 text-xl">Injection</h1>
+                        <table class="w-full">
+                            <thead class="text-xs text-left text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Pressure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 6.times do |i| %>
+                                    <% if @setting.send("injection_speed_#{i+1}").present? %>
+                                        <tr>
+                                            <td class="border px-4 py-2"><strong><%= i+1 %></strong></td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_speed_#{i+1}") %>mm/s</td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_position_#{i+1}") %>mm</td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_pressure_#{i+1}") %> bar</td>
+                                        </tr>
+                                    <% end %>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="border p-4 md:w-1/2 rounded">
+                        <h1 class="font-bold text-gray-700 text-xl">Holding</h1>
+                        <table class="w-full">
+                            <thead class="text-xs text-left text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                    <th class="px-4 py-2 font-bold bg-gray-200">Pressure</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 6.times do |i| %>
+                                    <% if @setting.send("injection_speed_#{i+1}").present? %>
+                                        <tr>
+                                            <td class="border px-4 py-2"><strong><%= i+1 %></strong></td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_speed_#{i+1}") %>mm/s</td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_position_#{i+1}") %>mm</td>
+                                            <td class="border px-4 py-2"><%= @setting.send("injection_pressure_#{i+1}") %> bar</td>
+                                        </tr>
+                                    <% end %>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <div class="border p-4 md:w-1/2 rounded mb-4">
+                    <h1 class="font-bold text-gray-700 mb-4 text-xl">Mould Closing</h1>
+                    <div class="w-1/2 text-sm text-left text-gray-500 flex justify-center items-center">
+                        <div class="border p-4 mr-12 rounded">
+                            <table class="w-1/2">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                    <tr class="">
+                                        <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                        <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                        <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% 3.times do |i| %>
+                                        <tr>
+                                            <td class="border px-4 py-2"><%= i+1 %></td>
+                                            <td class="border px-4 py-2"><%= @setting.send("closing_speed_#{i+1}") %>mm/s</td>
+                                            <td class="border px-4 py-2"><%= @setting.send("closing_position_#{i+1}") %>mm</td>
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex flex-col gap-4 mr-4">
+                            <div class="w-full border rounded p-2 mr-4">
+                                <h1 class="font-bold text-gray-700 mb-4">Closing Pressure</h1>
+                                <p class="text-gray-700"><%= @setting.closing_pressure %></p>
+                            </div>
+                            <div class="w-full border rounded p-2">
+                                <h1 class="font-bold text-gray-700 mb-4">Locking Tonnage</h1>
+                                <p class="text-gray-700"><%= @setting.locking_tonnage %></p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4 mr-4">
+                            <div class="w-full border rounded p-4 mr-4">
+                                <h1 class="font-bold text-gray-700 mb-4">Mould Safety Position</h1>
+                                <p class="text-gray-700"><%= @setting.mould_safety_position %></p>
+                            </div>
+                            <div class="w-full border rounded p-4">
+                                <h1 class="font-bold text-gray-700 mb-4">Mould Safety Pressure</h1>
+                                <p class="text-gray-700"><%= @setting.mould_safety_pressure %></p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <div class="w-full border rounded p-4 mr-4">
+                                <h1 class="font-bold text-gray-700 mb-4">Clamp Lockup Position</h1>
+                                <p class="text-gray-700"><%= @setting.clamp_lockup_position %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border p-4 md:w-1/2 rounded mb-4">
+                    <h1 class="font-bold text-gray-700 mb-4 text-xl">Mould Opening</h1>
+                    <div class="">
+                        <div class="w-1/2 text-sm text-left text-gray-500 flex justify-center items-center">
+                            <div class="border p-4 mr-12 rounded">
+                                <table class="w-1/2">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr class="">
+                                            <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% 3.times do |i| %>
+                                            <tr>
+                                                <td class="border px-4 py-2"><strong><%= i+1 %></strong></td>
+                                                <td class="border px-4 py-2"><%= @setting.send("opening_speed_#{i+1}") %>mm/s</td>
+                                                <td class="border px-4 py-2"><%= @setting.send("opening_position_#{i+1}") %>mm</td>
+                                            </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="flex gap-4 mr-4">
+                                <div class="w-full border rounded p-4 mr-4">
+                                    <h1 class="font-bold text-gray-700 mb-4">Opening Stroke</h1>
+                                    <p class="text-gray-700"><%= @setting.opening_stroke %></p>
+                                </div>
+                                <div class="w-full border rounded p-4">
+                                    <h1 class="font-bold text-gray-700 mb-4">Ejection Cycles</h1>
+                                    <p class="text-gray-700"><%= @setting.ejection_cycles %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border p-4 md:w-1/2 rounded">
+                    <h1 class="font-bold text-gray-700 mb-4 text-xl mt-4">Ejection</h1>
+                        <div class="w-1/2 text-sm text-left text-gray-500 flex justify-center items-center">
+                            <div class="border p-4 mr-12 rounded">
+                                <h1 class="font-bold text-gray-700 mb-1 text-md mt-1">Ejection Forward</h1>
+                                <table class="w-1/2">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr class="">
+                                            <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Pressure</th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% 2.times do |i| %>
+                                            <tr>
+                                                <td class="border px-4 py-2"><strong><%= i+1 %></strong></td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_forward_speed_#{i+1}") %>mm/s</td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_forward_pressure_#{i+1}") %>kN</td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_forward_position_#{i+1}") %>mm</td>
+                                            </tr>
+                                        <% end %>
+                                        <tr>
+                                            <td class="border px-4 py-2"></td>
+                                            <td class="border px-4 py-2"><strong>Delay</strong></td>
+                                            <td class="border px-4 py-2"><%= @setting.ejection_forward_delay %> seconds</td>
+                                            <td class="border px-4 py-2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="border p-4 mr-12 rounded">
+                                <h1 class="font-bold text-gray-700 mb-1 text-md mt-1">Ejection Backward</h1>
+                                <table class="w-1/2">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr class="">
+                                            <th class="px-4 py-2 font-bold bg-gray-200"></th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Speed</th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Pressure</th>
+                                            <th class="px-4 py-2 font-bold bg-gray-200">Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% 2.times do |i| %>
+                                            <tr>
+                                                <td class="border px-4 py-2"><strong><%= i+1 %></strong></td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_back_speed_#{i+1}") %>mm/s</td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_back_pressure_#{i+1}") %>kN</td>
+                                                <td class="border px-4 py-2"><%= @setting.send("ejection_back_position_#{i+1}") %>mm</td>
+                                            </tr>
+                                        <% end %>
+                                        <tr>
+                                            <td class="border px-4 py-2"></td>
+                                            <td class="border px-4 py-2"><strong>Delay</strong></td>
+                                            <td class="border px-4 py-2"><%= @setting.ejection_back_delay %> seconds</td>
+                                            <td class="border px-4 py-2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
