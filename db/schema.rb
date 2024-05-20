@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_17_123459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,12 +27,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_113102) do
     t.string "manufacturer"
     t.integer "tonnage"
     t.bigint "site_id", null: false
-    t.date "manufacture_year"
     t.string "maintainx_id"
     t.string "machine_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "machine_name"
+    t.integer "injection_unit"
+    t.integer "screw_diameter"
+    t.integer "max_injection_volume"
+    t.integer "max_opening_stroke"
+    t.integer "min_mould_height"
+    t.integer "max_mould_height"
+    t.boolean "sequential_control"
+    t.integer "platen_width"
+    t.integer "platen_height"
+    t.integer "tie_bar_width"
+    t.integer "tie_bar_height"
+    t.integer "ejector_stroke"
+    t.integer "location_ring_size"
+    t.integer "max_power"
+    t.integer "air_valves"
+    t.integer "hydraulic_valves"
+    t.integer "year_of_manufacture"
     t.index ["site_id"], name: "index_machines_on_site_id"
   end
 
