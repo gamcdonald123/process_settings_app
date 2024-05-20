@@ -22,12 +22,28 @@
                 <%= form.label :cycle_time, "Cycle Time", class: "block text-gray-700 text-sm font-bold mb-2" %>
                 <%= form.number_field :cycle_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             </div>
+            <div class="mb-4">
+                <%= form.label :drying_time, "Drying Time (hours)", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.number_field :drying_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div class="mb-4">
+                <%= form.label :shot_weight, "Shot Weight", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.number_field :shot_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div class="mb-4">
+                <%= form.label :sprue_weight, "Sprue Weight", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.number_field :sprue_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
         </div>
         <%# Temperatures %>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
         <div class="section border border-black rounded shadow-md p-4 mb-4">
-            <h1 class="font-bold text-gray-700">Hot Runner</h1>
+            <h1 class="font-bold text-gray-700 mb-4">Hot Runner</h1>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div>
+                    <%= form.label "nozzle_temp", "Nozzle", class: "text-sm mb-4 font-bold text-gray-700" %>
+                    <%= form.number_field "nozzle_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
                 <%# Hot runner temperates. Change number to change fields %>
                 <% 24.times do |i| %>
                     <div class="w-full md:w-1/2 lg:w-1/4">
@@ -88,11 +104,11 @@
                     <div class="flex flex-col border rounded p-4">
                         <div>
                             <%= form.label "Speed #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
-                            <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                            <%= form.number_field "opening_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                         </div>
                         <div>
                             <%= form.label "Position #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
-                            <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= form.number_field "opening_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                     </div>
                 <% end %>
@@ -115,9 +131,9 @@
                 <% 3.times do |i| %>
                     <div class="flex flex-col border rounded p-4">
                         <%= form.label "Speed #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
-                        <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                        <%= form.number_field "closing_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                         <%= form.label "Position #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
-                        <%= form.number_field "opening_speed_1", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= form.number_field "closing_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 <% end %>
             </div>
