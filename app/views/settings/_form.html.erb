@@ -45,11 +45,7 @@
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h1 class="font-bold text-gray-700 mb-4">Hot Runner</h1>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                <div>
-                    <%= f.label "nozzle_temp", "Nozzle", class: "text-sm mb-4 font-bold text-gray-700" %>
-                    <%= f.number_field "nozzle_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4">
                 <%# Hot runner temperates. Change number to change fields %>
                 <% 24.times do |i| %>
                     <div class="w-full">
@@ -203,7 +199,7 @@
                             <%= f.label "Pressure #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
                             <div class="flex w-full">
                                 <%= f.number_field "ejection_forward_pressure_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                                <span class="ml-4 py-2">°C</span>
+                                <span class="ml-4 py-2"> bar</span>
                             </div>
                         </div>
                         <div class="px-4">
@@ -237,7 +233,7 @@
                             <%= f.label "Pressure #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
                             <div class="flex w-full">
                                 <%= f.number_field "ejection_back_pressure_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-                                <span class="ml-4 py-2">°C</span>
+                                <span class="ml-4 py-2"> bar</span>
                             </div>
                         </div>
                         <div class="px-4">
