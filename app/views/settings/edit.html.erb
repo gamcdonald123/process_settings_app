@@ -1,1 +1,4 @@
 <%= render 'form' %>
+<div>
+    <%= button_to "Delete", @setting, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+</div>
