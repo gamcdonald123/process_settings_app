@@ -39,7 +39,7 @@
             <div class="flex flex-col items-center">
                 <p class="text-center mb-1"><%= current_user.first_name %> <%= current_user.last_name %></p>
                 <!-- button_to gets round the get request issue on sign-out -->
-                <%= button_to "Sign out", destroy_user_session_path(@current_user), method: :delete, class: "text-right" %>
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: { turbolinks: false }, class: "text-right" %>
             </div>
         <% else %>
             <div class="text-center">
