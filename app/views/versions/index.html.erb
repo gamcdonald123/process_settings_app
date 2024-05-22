@@ -3,6 +3,7 @@
 <%= link_to 'Back', setting_path(@setting), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" %>
 
 <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4 mt-4">
+<<<<<<< HEAD
     <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
         <thead>
             <tr class="text-left">
@@ -29,5 +30,32 @@
             <% end %>
         </tbody>
     </table>
+=======
+  <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
+    <thead>
+      <tr class="text-left">
+        <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">ID</th>
+        <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Type</th>
+        <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Event</th>
+        <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Who</th>
+        <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Version no.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @versions.each do |version| %>
+        <% if version.event != "create" %>
+          <tr class="hover:bg-gray-100 cursor-pointer">
+            <td class="p-2 border-b border-gray-200"><%= link_to version.id, setting_version_path(@setting, version) %></td>
+            <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
+            <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
+            <td class="p-2 border-b border-gray-200"><% if version.whodunnit %>
+              <%= User.find(version.whodunnit).email %>
+            <% end %></td>
+            <td class="p-2 border-b border-gray-200"><%= version.index + 1 %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+>>>>>>> origin/main
 </div>
-
