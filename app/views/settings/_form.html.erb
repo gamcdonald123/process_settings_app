@@ -41,7 +41,8 @@
                 </div>
             </div>
         </div>
-        <%# Temperatures %>
+
+        <%# Temperatures Section %>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h1 class="font-bold text-gray-700 mb-4">Hot Runner</h1>
@@ -71,7 +72,7 @@
                 <% end %>
             </div>
         </div>
-        
+
         <%# Injection %>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-4">Barrel</h2>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
@@ -128,7 +129,7 @@
                         <%= f.number_field "ejection_cycles", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 <% 3.times do |i| %>
                     <div class="flex flex-col border rounded p-4">
                         <div>
@@ -322,7 +323,7 @@
                                 </td>
                             </tr>
                         <% end %>
-                    </tbody>                
+                    </tbody>
                 </table>
             </div>
         </div>
