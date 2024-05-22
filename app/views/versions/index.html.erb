@@ -15,8 +15,8 @@
         </thead>
         <tbody>
             <% @versions.each do |version| %>
-                <tr class="hover:bg-gray-100 cursor-pointer">
-                    <td class="p-2 border-b border-gray-200"><%= link_to version.id, setting_version_path(@setting, version) %></td>
+                <tr class="hover:bg-gray-100 cursor-pointer" data-controller="version-table-row" data-action="click->version-table-row#goToVersion" data-version-table-row-version-url-value="<%= setting_version_path(@setting, version) %>">
+                    <td class="p-2 border-b border-gray-200"><%= version.id %></td>
                     <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
                     <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
                     <% if version.whodunnit.present? %>
