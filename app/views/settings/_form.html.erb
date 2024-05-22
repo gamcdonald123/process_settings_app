@@ -5,19 +5,19 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4" data-controller="dropdown">
                 <div class="mb-2">
                     <%= f.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                    <%= f.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                    <%= f.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }, @setting.technician_id), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
                 </div>
                 <div class="mb-2">
                     <%= f.label :site_id, "Site", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                    <%= f.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+                    <%= f.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }, @site&.id), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
                 </div>
                 <div class="mb-2">
                     <%= f.label :machine_id, "Machine", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                    <%= f.select :machine_id, [], {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+                    <%= f.select :machine_id, options_for_select(Machine.where(site_id: @site&.id).map { |m| [m.machine_name, m.id] }, @setting.machine_id), {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
                 </div>
                 <div class="mb-2">
                     <%= f.label :tool_id, "Tool", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                    <%= f.select :tool_id, options_from_collection_for_select(Tool.all, 'id', 'name'), { prompt: 'Select a tool' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                    <%= f.select :tool_id, options_from_collection_for_select(Tool.all, 'id', 'name', @setting.tool_id), { prompt: 'Select a tool' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
                 </div>
                 <div class="mb-2">
                     <%= f.label :cycle_time, "Cycle Time", class: "block text-gray-700 text-sm font-bold mb-2" %>

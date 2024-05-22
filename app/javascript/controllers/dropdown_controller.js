@@ -28,22 +28,45 @@ export default class extends Controller {
       }
       return;
     }
+
     const siteId = this.siteTarget.value;
+    if (!siteId) {
+      console.log('No site selected');
+      return;
+    }
+
     fetch(`/machines.json?site_id=${siteId}`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
+        const selectedMachineId = this.machineTarget.value;
         this.machineTarget.innerHTML = '';
+
+        // Sort and update machines
         data.sort((a, b) => {
           const aName = a.machine_name.replace(/^(IMM |M)/, '');
           const bName = b.machine_name.replace(/^(IMM |M)/, '');
           return aName.localeCompare(bName, undefined, { numeric: true });
         });
+
         data.forEach(machine => {
           const option = document.createElement('option');
           option.text = machine.machine_name;
           option.value = machine.id;
           this.machineTarget.add(option);
         });
+
+        // Restore selected value if previously set
+        if (selectedMachineId) {
+          this.machineTarget.value = selectedMachineId;
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
       });
   }
 }

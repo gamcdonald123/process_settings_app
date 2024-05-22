@@ -28,6 +28,7 @@ class SettingsController < ApplicationController
   end
 
   def edit
+    @site = @setting.machine.site if @setting.machine.present?
   end
 
   def update
