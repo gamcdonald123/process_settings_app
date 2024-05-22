@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_17_123459) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -197,6 +197,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_123459) do
     t.integer "screw_speed"
     t.integer "ejector_stroke"
     t.float "cushion_position"
+    t.string "tool_heater_type"
+    t.integer "drying_time"
+    t.integer "drying_temp"
     t.index ["machine_id"], name: "index_settings_on_machine_id"
     t.index ["technician_id"], name: "index_settings_on_technician_id"
     t.index ["tool_id"], name: "index_settings_on_tool_id"

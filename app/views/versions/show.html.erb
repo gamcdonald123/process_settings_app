@@ -1,23 +1,6 @@
-<h1 class="text-2xl font-bold"><%= @setting.tool.name %></h1>
-<h1>Version number: <%= @version.index + 1 %></h1>
-<h1>Created: <%= @version.created_at.strftime("%B %d, %Y %H:%M") %></h1>
-<h1>Updated by: <%= @setting.technician.first_name %> <%= @setting.technician.last_name %></h1>
-<h1>Event: <%= @version.event.capitalize %></h1>
-
-<div class="flex justify-center">
-    <div class="p-4 bg-white rounded shadow border w-9/12">
-        <% @version_hash.each do |key, value| %>
-            <% if key == "technician_id" %>
-                <div class="flex justify-between border-b py-2">
-                    <strong><%= key.humanize %>:</strong>
-                    <span><%= Technician.find(value).first_name %> <%= Technician.find(value).last_name %></span>
-                </div>
-            <% else %>
-                <div class="flex justify-between border-b py-2">
-                    <strong><%= key.humanize %>:</strong>
-                    <span><%= value %></span>
-                </div>
-            <% end %>
-        <% end %>
+<div class="flex px-4">
+    <div class="mb-4">
+        <%= link_to "Back", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
     </div>
 </div>
+<%= render 'show' %>

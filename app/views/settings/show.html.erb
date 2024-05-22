@@ -1,53 +1,12 @@
-<div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold text-left mb-4">Settings</h1>
-    <h1 class="text-2xl font-bold text-left mb-4"><%= @setting.tool.name %></h1>
-    <h1 class="text-xl font-bold text-left mb-4">v<%= @setting.versions.count %></h1>
-    <div class="flex">
-        <div>
-            <%= link_to "Back", settings_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
-        <div>
-            <%= link_to "Edit", edit_setting_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
-        <div>
-            <%= link_to "Versions", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-        </div>
+<div class="flex px-4">
+    <div class="mb-4 mr-4">
+        <%= link_to "Back", settings_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 mt-4">
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Technician</h2>
-            <p><%= Technician.find(@setting.technician_id).first_name %> <%= Technician.find(@setting.technician_id).last_name %></p>
-        </div>
-
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Machine</h2>
-            <p>Name: <%= link_to @setting.machine.machine_name, machine_path(@setting.machine_id) %></p>
-            <p>Tonnage: <%= @setting.machine.tonnage %>T</p>
-            <p>Site: <%= @setting.machine.site.site_name %></p>
-        </div>
-
-        <div class="p-4 bg-white rounded shadow border">
-            <h2 class="text-xl font-bold mb-2">Dates</h2>
-            <% @setting.attributes.each do |attr_name, attr_value| %>
-                <% if attr_value.present? && %w[created_at updated_at].include?(attr_name) %>
-                    <div class="flex justify-between border-b py-2">
-                        <strong><%= attr_name.humanize %>:</strong>
-                        <span><%= attr_value.strftime("%B %d, %Y") %></span>
-                    </div>
-                <% end %>
-            <% end %>
-        </div>
+    <div class="mb-4 mr-4">
+        <%= link_to "Edit", edit_setting_path(params[:id]), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
     </div>
-
-    <div class="p-4 bg-white rounded shadow border">
-        <h2 class="text-xl font-bold mb-2">Setting Details</h2>
-        <% @setting.attributes.each do |attr_name, attr_value| %>
-            <% if attr_value.present? && !%w[id tool_id machine_id technician_id created_at updated_at].include?(attr_name) %>
-                <div class="flex justify-between border-b py-2">
-                    <strong><%= attr_name.humanize %>:</strong>
-                    <span><%= attr_value %></span>
-                </div>
-            <% end %>
-        <% end %>
+    <div class="mb-4">
+        <%= link_to "Versions", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
     </div>
 </div>
+<%= render 'show' %>

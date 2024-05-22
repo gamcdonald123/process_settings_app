@@ -2,8 +2,11 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy, :version]
 
   def index
-    @settings = Setting.all.order(:id)
+    @settings = Setting.joins(:tool).order('tools.name')
     @tool = Tool.all
+  end
+
+  def test
   end
 
   def show
@@ -18,6 +21,7 @@ class SettingsController < ApplicationController
     if @setting.save
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
+      puts @setting.errors.full_messages
       render :new, status: :unprocessable_entity
       puts @setting.errors.full_messages
     end
