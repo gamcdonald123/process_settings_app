@@ -1,4 +1,5 @@
 <div class="flex justify-center text-left">
+<<<<<<< HEAD
     <%= form_with(model: @setting, local: true) do |f| %>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-2">Information</h2>
@@ -39,11 +40,40 @@
                     <%= f.label :sprue_weight, "Sprue Weight", class: "block text-gray-700 text-sm font-bold mb-2" %>
                     <%= f.number_field :sprue_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
+=======
+    <%= form_with(model: @setting, local: true) do |form| %>
+        <h2 class="block text-gray-700 text-2xl font-bold mb-4">Information</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-4" data-controller="dropdown">
+            <%# Technician Selection %>
+            <div class="mb-4">
+                <%= form.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+            </div>
+            <%# Site Selection %>
+            <div class="mb-4">
+                <%= form.label :site_id, "Site", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+            </div>
+            <%# Machine Selection %>
+            <div class="mb-4">
+                <%= form.label :machine_id, "Machine", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :machine_id, [], {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+            </div>
+            <%# Tool Selection %>
+            <div class="mb-4">
+                <%= form.label :tool_id, "Tool", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :tool_id, options_from_collection_for_select(Tool.all.order(name: :asc), 'id', 'name'), { prompt: 'Select a tool' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+            </div>
+            <div class="mb-4">
+                <%= form.label :cycle_time, "Cycle Time", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.number_field :cycle_time, step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
             </div>
         </div>
 
         <%# Temperatures Section %>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4">Temperatures</h2>
+<<<<<<< HEAD
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h1 class="font-bold text-gray-700 mb-4">Hot Runner</h1>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4">
@@ -68,6 +98,36 @@
                     <div class="w-full">
                         <%= f.label "zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
                         <%= f.number_field "zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+=======
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <%# Hot Runner Temperatures %>
+            <h1 class="font-bold text-gray-700">Hot Runner</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <% 24.times do |i| %>
+                <div class="w-full min-w-[150px]">
+                  <%= form.label "hr_zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
+                  <%= form.number_field "hr_zone#{i+1}_temp", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+              <% end %>
+            </div>
+        </div>
+
+        <%# Barrel Temperatures %>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h1 class="font-bold text-gray-700">Barrel</h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <%# Barrel temperates. Change number to change fields %>
+                <%# Nozzle %>
+                <div class="w-full md:w-1/2 lg:w-1/4 min-w-[150px]">
+                        <%= form.label "nozzle_temp", "Nozzle", class: "text-sm" %>
+                        <%= form.number_field "nozzle_temp", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <%# Zones %>
+                <% 12.times do |i| %>
+                    <div class="w-full md:w-1/2 lg:w-1/4 min-w-[150px]">
+                        <%= form.label "zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm" %>
+                        <%= form.number_field "zone#{i+1}_temp", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
                     </div>
                 <% end %>
             </div>
@@ -98,6 +158,7 @@
             </div>
         </div>
         <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-4">Mould</h2>
+<<<<<<< HEAD
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <%# Mould opening %>
             <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Heating</h2>
@@ -117,33 +178,93 @@
             </div>
         </div>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
+=======
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <%# Mould closing %>
+            <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Closing</h2>
+            <div class="flex justify-center mb-6">
+                <div class="flex flex-col border rounded p-4 mr-12">
+                    <%= form.label "closing_pressure", "Closing Pressure", class: "text-sm mb-4" %>
+                    <%= form.number_field "closing_pressure", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "locking_tonnage", "Locking Tonnage", class: "text-sm mb-4" %>
+                    <%= form.number_field "locking_tonnage", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-4">
+                <% 3.times do |i| %>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "Speed #{i+1}", class: "text-sm mb-2" %>
+                        <%= form.number_field "opening_speed_1", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                        <%= form.label "Position #{i+1}", class: "text-sm mb-2" %>
+                        <%= form.number_field "opening_speed_1", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "mould_safety_position", "Mould Safety Position", class: "text-sm mb-2" %>
+                        <%= form.number_field "mould_safety_position", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                    </div>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "mould_safety_pressure", "Mould Safety Pressure", class: "text-sm mb-2" %>
+                        <%= form.number_field "mould_safety_pressure", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                    </div>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "clamp_lockup_position", "Clamp Lockup Position", class: "text-sm mb-2" %>
+                        <%= form.number_field "clamp_lockup_position", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                    </div>
+            </div>
+        </div>
+        <div class="section border border-black rounded shadow-md p-4 mb-4">
+>>>>>>> origin/main
             <%# Mould opening %>
             <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Opening</h2>
             <div class="flex justify-center mb-6">
                     <div class="flex flex-col border rounded p-4 mr-12">
+<<<<<<< HEAD
                         <%= f.label "opening_stroke", "Opening Stroke", class: "text-sm mb-4 font-bold text-gray-700" %>
                         <%= f.number_field "opening_stroke", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="flex flex-col border rounded p-4">
                         <%= f.label "ejection_cycles", "Ejection Cycles", class: "text-sm mb-4 font-bold text-gray-700" %>
                         <%= f.number_field "ejection_cycles", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+=======
+                        <%= form.label "opening_stroke", "Opening Stroke", class: "text-sm mb-4" %>
+                        <%= form.number_field "opening_stroke", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
+                    <div class="flex flex-col border rounded p-4">
+                        <%= form.label "ejection_cycles", "Ejection Cycles", class: "text-sm mb-4" %>
+                        <%= form.number_field "ejection_cycles", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
                     </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 <% 3.times do |i| %>
                     <div class="flex flex-col border rounded p-4">
                         <div>
+<<<<<<< HEAD
                             <%= f.label "Speed #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
                             <%= f.number_field "opening_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                         </div>
                         <div>
                             <%= f.label "Position #{i+1}", class: "text-sm mb-4 font-bold text-gray-700" %>
                             <%= f.number_field "opening_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+=======
+                            <%= form.label "Speed #{i+1}", class: "text-sm mb-2" %>
+                            <%= form.number_field "opening_speed_1", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                        </div>
+                        <div>
+                            <%= form.label "Position #{i+1}", class: "text-sm mb-2" %>
+                            <%= form.number_field "opening_speed_1", step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
                         </div>
                     </div>
                 <% end %>
             </div>
         </div>
+<<<<<<< HEAD
         <%# Mould closing %>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h2 class="block text-gray-700 text-xl font-bold mb-4">Mould Closing</h2>
@@ -182,10 +303,13 @@
                 </div>
             </div>
         </div>
+=======
+>>>>>>> origin/main
         <%# Ejection %>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h2 class="block text-gray-700 text-xl font-bold mb-4">Ejection</h2>
             <h2 class="text-gray-700 font-semibold mb-4 text-lg">Forward</h2>
+<<<<<<< HEAD
             <div class="grid grid-cols-2 gap-4 max-w-2xl">
                 <% 2.times do |i| %>
                     <div class="flex flex-wrap space-y-4 border rounded p-4">
@@ -250,11 +374,86 @@
                     <%= f.label "Delay", class: "text-sm mb-4 font-bold text-gray-700 mr-4 ml-4" %>
                     <%= f.number_field "ejection_back_delay", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     <span class="ml-2 text-sm">s</span>
+=======
+            <div class="flex justify-center">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-auto items-center">
+                  <% 2.times do |i| %>
+                      <div class="flex justify-center border rounded p-4 mb-4">
+                          <div class="mx-2 mb-4">
+                              <%= form.label "Speed #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_forward_speed_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">mm/s</span>
+                              </div>
+                          </div>
+                          <div class="mx-2">
+                              <%= form.label "Pressure #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_forward_pressure_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">°C</span>
+                              </div>
+                          </div>
+                          <div class="mx-2">
+                              <%= form.label "Position #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_forward_position_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">mm</span>
+                              </div>
+                          </div>
+                      </div>
+                  <% end %>
+              </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <%= form.label "Delay", class: "text-sm mb-2" %>
+                <div class="flex justify-center items-center">
+                    <%= form.number_field "ejection_forward_delay", step: :any, class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    <span class="ml-4 text-sm">s</span>
+                </div>
+            </div>
+            <hr class="my-4 mt-4">
+            <h2 class="text-gray-700 font-semibold text-lg mb-4 mt-4">Back</h2>
+            <div class="flex justify-center">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-auto items-center">
+                  <% 2.times do |i| %>
+                      <div class="flex justify-center border rounded p-4 mb-4">
+                          <div class="mx-2 mb-4">
+                              <%= form.label "Speed #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_back_speed_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">mm/s</span>
+                              </div>
+                          </div>
+                          <div class="mx-2">
+                              <%= form.label "Pressure #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_back_pressure_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">bar</span>
+                              </div>
+                          </div>
+                          <div class="mx-2">
+                              <%= form.label "Position #{i+1}", class: "text-sm" %>
+                              <div class="flex w-auto">
+                                  <%= form.number_field "ejection_back_position_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                  <span class="ml-4 py-2">mm</span>
+                              </div>
+                          </div>
+                      </div>
+                  <% end %>
+              </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <%= form.label "Delay", class: "text-sm mb-2" %>
+                <div class="flex justify-center items-center">
+                    <%= form.number_field "ejection_forward_delay", step: :any, class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    <span class="ml-4 text-sm">s</span>
+>>>>>>> origin/main
                 </div>
             </div>
         </div>
         <%# Injection profile %>
         <div class="mb-8">
+<<<<<<< HEAD
             <div class="border p-4 w-full rounded mb-4">
                 <h2 class="text-2xl font-bold text-gray-700 mb-4">Injection Profile</h2>
                 <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
@@ -289,14 +488,55 @@
                         </tbody>
                     </table>
                 </div>
+=======
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Injection Profile</h2>
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+                <table class="w-full text-sm text-center text-gray-500">
+                    <thead class="text-xs text-gray-700 bg-gray-50">
+                        <tr>
+                            <th class="pr-8"></th>
+                            <th class="px-6">Speed (mm/s)</th>
+                            <th class="px-6">Position (mm)</th>
+                            <th class="px-6">Pressure (bar)</th>
+                        </tr>
+                        <tr>
+                            <!-- Number headers from 1 to 6 -->
+                            <th class="px-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 6.times do |i| %>
+                            <tr class="bg-white">
+                                <td class="pr-8 py-4 font-medium text-gray-900 "><%= "#{i + 1}" %></td>
+                                <td class="px-8 py-4">
+                                    <%= form.number_field "injection_speed_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
+                                </td>
+                                <td class="px-8 py-4">
+                                    <%= form.number_field "injection_position_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
+                                </td>
+                                <td class="px-8 py-4">
+                                    <%= form.number_field "injection_pressure_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+>>>>>>> origin/main
             </div>
         </div>
         <%# Holding pressure %>
         <div class="mb-8">
+<<<<<<< HEAD
             <h2 class="text-2xl font-bold text-gray-700 mb-4">Holding Pressure</h2>
             <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+=======
+            <div class="section border border-black rounded shadow-md p-4 mb-4">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Holding Pressure</h2>
+                <table class="w-full text-sm text-center text-gray-500">
+                    <thead class="text-xs text-gray-700 bg-gray-50">
+>>>>>>> origin/main
                         <tr>
                             <th class="pr-8"></th>
                             <th class="px-6">Pressure (bar)</th>
@@ -313,6 +553,7 @@
                             <tr class="bg-white">
                                 <td class="pr-8 py-4 font-medium text-gray-900 "><%= "#{i + 1}" %></td>
                                 <td class="px-8 py-4">
+<<<<<<< HEAD
                                     <%= f.number_field "holding_pressure_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
                                 </td>
                                 <td class="px-8 py-4">
@@ -320,6 +561,15 @@
                                 </td>
                                 <td class="px-8 py-4">
                                     <%= f.number_field "holding_pressure_speed_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
+=======
+                                    <%= form.number_field "holding_pressure_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
+                                </td>
+                                <td class="px-8 py-4">
+                                    <%= form.number_field "holding_pressure_time_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
+                                </td>
+                                <td class="px-8 py-4">
+                                    <%= form.number_field "holding_pressure_speed_#{i+1}", step: :any, class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
+>>>>>>> origin/main
                                 </td>
                             </tr>
                         <% end %>
@@ -332,6 +582,7 @@
             <h2 class="block text-gray-700 text-xl font-bold mb-4">Screw</h2>
             <div class="grid grid-cols-3 gap-4">
                 <div class="flex flex-col border rounded p-4">
+<<<<<<< HEAD
                     <%= f.label "screw_speed", "Screw Speed", class: "text-sm mb-4 font-bold text-gray-900" %>
                     <%= f.number_field "screw_speed", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
@@ -354,14 +605,43 @@
                 <div class="flex flex-col border rounded p-4">
                     <%= f.label "switchover_position", "Switchover Position", class: "text-sm mb-4 font-bold text-gray-900" %>
                     <%= f.number_field "switchover_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+=======
+                    <%= form.label "screw_speed", "Screw Speed", class: "text-sm mb-4" %>
+                    <%= form.number_field "screw_speed", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "ejector_stroke", "Ejector Stroke", class: "text-sm mb-4" %>
+                    <%= form.number_field "ejector_stroke", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "back_pressure", "Back Pressure", class: "text-sm mb-4" %>
+                    <%= form.number_field "back_pressure", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "cushion_position", "Cushion Position", class: "text-sm mb-4" %>
+                    <%= form.number_field "cushion_position", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "cooling_time", "Cooling Time", class: "text-sm mb-4" %>
+                    <%= form.number_field "cooling_time", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="flex flex-col border rounded p-4">
+                    <%= form.label "switchover_position", "Switchover Position", class: "text-sm mb-4" %>
+                    <%= form.number_field "switchover_position", step: :any, class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
                 </div>
             </div>
         </div>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <div class="grid grid-cols-1 gap-4 mt-4">
                 <div class="mb-4">
+<<<<<<< HEAD
                     <%= f.label :technicians_rating, "Rating (1 - 5)", class: "block text-gray-700 text-sm font-bold mb-2" %>
                     <%= f.number_field :technicians_rating, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+=======
+                    <%= form.label :technicians_rating, "Rating (1 - 5)", class: "block text-gray-700 text-sm font-bold mb-2" %>
+                    <%= form.number_field :technicians_rating, step: :any, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+>>>>>>> origin/main
                 </div>
                 <div class="mb-4">
                     <%= f.label :technicians_comments, "Comments", class: "block text-gray-700 text-sm font-bold mb-2" %>
