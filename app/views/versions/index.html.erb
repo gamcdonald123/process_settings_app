@@ -15,19 +15,17 @@
         </thead>
         <tbody>
             <% @versions.each do |version| %>
-                <% if version.event != "create" %>
-                    <tr class="hover:bg-gray-100 cursor-pointer">
-                        <td class="p-2 border-b border-gray-200"><%= link_to version.id, setting_version_path(@setting, version) %></td>
-                        <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
-                        <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
-                        <% if version.whodunnit.present? %>
-                            <td class="p-2 border-b border-gray-200"><%= User.find(version.whodunnit).first_name %> <%= User.find(version.whodunnit).last_name %></td>
-                        <% else %>
-                            <td class="p-2 border-b border-gray-200">
-                        <% end %>
-                        <td class="p-2 border-b border-gray-200"><%= version.index + 1 %></td>
-                    </tr>
-                <% end %>
+                <tr class="hover:bg-gray-100 cursor-pointer">
+                    <td class="p-2 border-b border-gray-200"><%= link_to version.id, setting_version_path(@setting, version) %></td>
+                    <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
+                    <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
+                    <% if version.whodunnit.present? %>
+                        <td class="p-2 border-b border-gray-200"><%= User.find(version.whodunnit).first_name %> <%= User.find(version.whodunnit).last_name %></td>
+                    <% else %>
+                        <td class="p-2 border-b border-gray-200"></td>
+                    <% end %>
+                    <td class="p-2 border-b border-gray-200"><%= version.index + 1 %></td>
+                </tr>
             <% end %>
         </tbody>
     </table>

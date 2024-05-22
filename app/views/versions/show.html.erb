@@ -1,14 +1,6 @@
-<div class="px-4">
-    <div>
-        <h1 class="text-2xl font-bold"><%= @setting.tool.name %></h1>
-        <h1>Version number: <%= @version.index + 1 %></h1>
-        <h1>Created: <%= @version.created_at.strftime("%B %d, %Y %H:%M") %></h1>
-        <h1>Updated by: <%= @setting.technician.first_name %> <%= @setting.technician.last_name %></h1>
-        <h1>Event: <%= @version.event.capitalize %></h1>
-    </div>
-    <div class="mt-4">
-        <%= link_to "Back", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4" %>
+<div class="flex px-4">
+    <div class="mb-4">
+        <%= link_to "Back", setting_versions_path(@setting), class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
     </div>
 </div>
-
-<%= render 'settings/show' %>
+<%= render 'show' %>

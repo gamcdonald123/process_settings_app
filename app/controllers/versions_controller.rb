@@ -11,9 +11,11 @@ class VersionsController < ApplicationController
 
   def show
     yaml_string = @version.object
-    @version_hash = YAML.safe_load(yaml_string, permitted_classes: [Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone],
-    aliases: true
-    )
+
+    # OpenStruct allows us to access the hash values as methods
+    @version_hash = OpenStruct.new(YAML.safe_load(yaml_string, permitted_classes: [Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone],
+      aliases: true
+      ))
   end
 
   private
