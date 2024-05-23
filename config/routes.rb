@@ -8,13 +8,14 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  # Define the root paths for authenticated and unauthenticated users
-  authenticated :user do
-    root to: 'pages#home', as: :authenticated_root
-  end
+  devise_scope :user do
+    authenticated :user do
+      root to: 'pages#home', as: :authenticated_root
+    end
 
-  unauthenticated do
-    root to: 'devise/sessions#new', as: :unauthenticated_root
+    unauthenticated do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
   end
 
   # Admin namespace
@@ -39,7 +40,4 @@ Rails.application.routes.draw do
 
   # Registration holding page
   get 'registration_holding', to: 'pages#registration_holding'
-
-  # Root path for authenticated users
-  root 'pages#home'
 end

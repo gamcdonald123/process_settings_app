@@ -16,8 +16,14 @@
         <!-- Center Section for Navigation Links -->
         <div class="hidden md:flex justify-center flex-grow" id="menu" data-navbar-target="menu">
             <ul class="list-none flex justify-center">
-                <%= link_to root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
-                    <li>Home</li>
+                <% if user_signed_in? %>
+                    <%= link_to authenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                        <li>Home</li>
+                    <% end %>
+                <% else %>
+                    <%= link_to unauthenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                        <li>Home</li>
+                    <% end %>
                 <% end %>
                 <%= link_to machines_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
                     <li>Machines</li>
