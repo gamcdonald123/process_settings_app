@@ -1,24 +1,32 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :set_paper_trail_whodunnit
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_paper_trail_whodunnit
+  before_action :check_authorization
 
-  def home
+  def after_sign_in_path_for(resource)
+    if resource.roles.nil?
+      registration_holding_path
+    else
+      determine_redirect_path
+    end
   end
 
-  protected
+  private
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :site_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :site_id])
+  def check_authorization
+    return if current_user.nil?
+
+    unless current_user.has_role?(:admin) || current_user.has_role?(:technician) || current_user.has_role?(:setter)
+      if !(controller_name == 'pages' && action_name == 'registration_holding')
+        redirect_to registration_holding_path, alert: "Please request access from the administrator."
+      end
+    end
   end
 
-  def after_sign_out_path_for(resource_or_scope)
-    root_path
-  end
-
-  def user_for_paper_trail
-    current_user.try(:id)
+  def determine_redirect_path
+    if current_user.has_role?(:admin) || current_user.has_role?(:technician) || current_user.has_role?(:setter)
+      root_path
+    else
+      registration_holding_path
+    end
   end
 end

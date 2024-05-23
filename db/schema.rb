@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_081840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,23 +49,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
     t.integer "air_valves"
     t.integer "hydraulic_valves"
     t.integer "year_of_manufacture"
-    t.integer "injection_unit"
-    t.integer "screw_diameter"
-    t.integer "max_injection_volume"
-    t.integer "max_opening_stroke"
-    t.integer "min_mould_height"
-    t.integer "max_mould_height"
-    t.boolean "sequential_control"
-    t.integer "platen_width"
-    t.integer "platen_height"
-    t.integer "tie_bar_width"
-    t.integer "tie_bar_height"
-    t.integer "ejector_stroke"
-    t.integer "location_ring_size"
-    t.integer "max_power"
-    t.integer "air_valves"
-    t.integer "hydraulic_valves"
-    t.integer "year_of_manufacture"
     t.index ["site_id"], name: "index_machines_on_site_id"
   end
 
@@ -77,6 +60,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
     t.bigint "user_id", null: false
     t.index ["feedback_id"], name: "index_replies_on_feedback_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -161,7 +154,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
     t.integer "mould_safety_position"
     t.integer "mould_safety_pressure"
     t.float "clamp_lockup_position"
-    t.float "clamp_lockup_position"
     t.integer "ejection_forward_speed_1"
     t.integer "ejection_forward_speed_2"
     t.integer "ejection_forward_position_1"
@@ -196,26 +188,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
     t.integer "injection_pressure_6"
     t.integer "holding_pressure_1"
     t.float "holding_pressure_time_1"
-    t.float "holding_pressure_time_1"
     t.integer "holding_pressure_speed_1"
     t.integer "holding_pressure_2"
-    t.float "holding_pressure_time_2"
     t.float "holding_pressure_time_2"
     t.integer "holding_pressure_speed_2"
     t.integer "holding_pressure_3"
     t.float "holding_pressure_time_3"
-    t.float "holding_pressure_time_3"
     t.integer "holding_pressure_speed_3"
     t.integer "holding_pressure_4"
-    t.float "holding_pressure_time_4"
     t.float "holding_pressure_time_4"
     t.integer "holding_pressure_speed_4"
     t.integer "holding_pressure_5"
     t.float "holding_pressure_time_5"
-    t.float "holding_pressure_time_5"
     t.integer "holding_pressure_speed_5"
     t.integer "holding_pressure_6"
-    t.float "holding_pressure_time_6"
     t.float "holding_pressure_time_6"
     t.integer "holding_pressure_speed_6"
     t.integer "screw_speed"
@@ -264,9 +250,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_170629) do
     t.string "last_name"
     t.string "role"
     t.bigint "site_id"
+    t.string "digital_systems_handler"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["site_id"], name: "index_users_on_site_id"
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   create_table "versions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
