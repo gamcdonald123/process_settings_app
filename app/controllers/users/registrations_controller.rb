@@ -16,7 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     # send slack notification
-    uri = URI(ENV["SLACK_WEBHOOK_URL"])
+    webhook = ENV["ZAPIER_REGISTRATION_WEBHOOK"]
+    Rails.logger.info "Zapier webhook: #{webhook}"
+    uri = URI(webhook)
+    puts uri
 
     begin
       Net::HTTP.post_form(uri, email: resource.email, id: resource.id, digital_systems_handler: resource.digital_systems_handler)
@@ -53,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :digital_systems_handler])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :site_id, :digital_systems_handler])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
