@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_action :check_authorization, only: [:new, :create, :destroy]
+  skip_before_action :check_authorization, only: [:new, :create]
 
   # POST /resource/sign_in
   def create
@@ -29,5 +29,15 @@ class Users::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(_resource_or_scope)
     new_user_session_path
+  end
+
+  private
+
+  def determine_redirect_path
+    if current_user.has_role?(:admin) || current_user.has_role?(:technician) || current_user.has_role?(:setter)
+      authenticated_root_path
+    else
+      registration_holding_path
+    end
   end
 end
