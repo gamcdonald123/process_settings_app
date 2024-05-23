@@ -7,6 +7,7 @@
         <thead>
             <tr class="text-left">
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">ID</th>
+                <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Index</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Type</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Event</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Who</th>
@@ -14,9 +15,10 @@
             </tr>
         </thead>
         <tbody>
-            <% @versions.each do |version| %>
+            <% @versions.each_with_index do |version, index| %>
                 <tr class="hover:bg-gray-100 cursor-pointer" data-controller="version-table-row" data-action="click->version-table-row#goToVersion" data-version-table-row-version-url-value="<%= setting_version_path(@setting, version) %>">
                     <td class="p-2 border-b border-gray-200"><%= version.id %></td>
+                    <td class="p-2 border-b border-gray-200"><%= version.index %></td>
                     <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
                     <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
                     <% if version.whodunnit.present? %>

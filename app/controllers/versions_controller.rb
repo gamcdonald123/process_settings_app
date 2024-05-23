@@ -5,7 +5,7 @@ class VersionsController < ApplicationController
   before_action :set_version, only: [:show]
 
   def index
-    @versions = @setting.versions
+    @versions = @setting.versions.order(created_at: :asc)
   end
 
   def show
@@ -36,6 +36,8 @@ class VersionsController < ApplicationController
         redirect_to setting_versions_path(setting_id: @setting.id) and return
       end
     end
+
+    @version_index = @setting.versions.order(created_at: :asc).pluck(:id).index(@version.id) + 1
   end
 
   private

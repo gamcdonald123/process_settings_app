@@ -44,11 +44,11 @@
                 <div class="flex justify-center">
                     <div class="w-full border border-gray-300 rounded p-4 mr-4">
                         <h1 class="font-bold text-gray-700 mb-4">Version</h1>
-                        <p class="text-gray-700">v<%= @version.index + 1 %></p>
+                        <p class="text-gray-700">v<%= @version_index %></p>
                     </div>
                     <div class="w-full border border-gray-300 rounded p-4 mr-4">
                         <h1 class="font-bold text-gray-700 mb-4">Last Updated By</h1>
-                        <p class="text-gray-700"><%= User.find(@setting.versions.last.whodunnit).first_name %> <%= User.find(@setting.versions.last.whodunnit).last_name %></p>
+                        <p class="text-gray-700"><%= User.find(@version.whodunnit).first_name %> <%= User.find(@version.whodunnit).last_name %></p>
                     </div>
                     <div class="w-full border border-gray-300 rounded p-4 mr-4">
                         <h1 class="font-bold text-gray-700 mb-4">Last Updated</h1>
