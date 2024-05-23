@@ -35,6 +35,8 @@ export default class extends Controller {
       return;
     }
 
+    const selectedMachineId = this.machineTarget.dataset.selectedMachineId; // Capture the initially selected machine ID
+
     fetch(`/machines.json?site_id=${siteId}`)
       .then(response => {
         if (!response.ok) {
@@ -43,7 +45,6 @@ export default class extends Controller {
         return response.json();
       })
       .then(data => {
-        const selectedMachineId = this.machineTarget.value;
         this.machineTarget.innerHTML = '';
 
         // Sort and update machines

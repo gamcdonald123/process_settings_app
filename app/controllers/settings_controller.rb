@@ -14,6 +14,8 @@ class SettingsController < ApplicationController
 
   def new
     @setting = Setting.new
+    @edit_mode = false
+    @machines = []
   end
 
   def create
@@ -29,6 +31,8 @@ class SettingsController < ApplicationController
 
   def edit
     @site = @setting.machine.site if @setting.machine.present?
+    @machines = Machine.where(site_id: @site.id) if @site.present?
+    @edit_mode = true
   end
 
   def update
