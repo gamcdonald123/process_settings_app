@@ -18,13 +18,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # send slack notification
     webhook = ENV["ZAPIER_REGISTRATION_WEBHOOK"]
     Rails.logger.info "Zapier webhook: #{webhook}"
-    uri = URI(webhook)
-    puts uri
 
-    begin
-      Net::HTTP.post_form(uri, email: resource.email, id: resource.id, digital_systems_handler: resource.digital_systems_handler)
-    rescue StandardError => e
-      Rails.logger.error "Failed to trigger Zapier webhook: #{e.message}"
+    if webhook.present?
+      begin
+        uri = URI.parse(webhook)
+        Rails.logger.info "Parsed URI: #{uri}"
+
+        Net::HTTP.post_form(uri, email: resource.email, id: resource.id, digital_systems_handler: resource.digital_systems_handler)
+      rescue URI::InvalidURIError => e
+        Rails.logger.error "Invalid URI: #{webhook}, error: #{e.message}"
+      rescue StandardError => e
+        Rails.logger.error "Failed to trigger Zapier webhook: #{e.message}"
+      end
+    else
+      Rails.logger.error "Zapier webhook URL is not set."
     end
   end
 
