@@ -17,13 +17,15 @@
       </div>
     <% end %>
   
-    <div class="flex justify-center">
-      <div class="bg-blue-400 text-white w-24 h-12 flex items-center justify-center rounded m-8">
+    <div class="flex justify-center space-x-4 mt-4">
+      <div class="bg-blue-400 text-white w-24 h-12 flex items-center justify-center rounded">
         <%= f.submit "Log in" %>
       </div>
-      <div class="bg-blue-400 text-white w-24 h-12 flex items-center justify-center rounded m-8">
-        <%= link_to "Sign up", new_user_registration_path %>
-      </div>
+      <%= link_to new_user_registration_path do %>
+        <div class="bg-blue-400 text-white w-24 h-12 flex items-center justify-center rounded">
+          <p>Sign up</p>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
