@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_action :check_authorization, only: [:new, :create]
+  skip_before_action :check_authorization, only: [:new, :create, :destroy]
 
   # POST /resource/sign_in
   def create
