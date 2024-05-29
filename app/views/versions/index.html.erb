@@ -1,5 +1,5 @@
-<h1 class="mb-4 text-2xl font-bold">Versions</h1>
-
+<h1 class="mb-2 text-2xl font-bold">Versions</h1>
+<p class="font-extralight text-gray-600 text-xs mb-8">Versions displayed here do not include the live version as seen on the previous page. All versions displayed here are archived.</p>
 <%= link_to 'Back', setting_path(@setting), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" %>
 
 <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4 mt-4">
@@ -7,7 +7,6 @@
         <thead>
             <tr class="text-left">
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">ID</th>
-                <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Index</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Type</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Event</th>
                 <th class="bg-blue-100 sticky top-0 p-2 border-b border-gray-200">Who</th>
@@ -16,18 +15,19 @@
         </thead>
         <tbody>
             <% @versions.each_with_index do |version, index| %>
-                <tr class="hover:bg-gray-100 cursor-pointer" data-controller="version-table-row" data-action="click->version-table-row#goToVersion" data-version-table-row-version-url-value="<%= setting_version_path(@setting, version) %>">
-                    <td class="p-2 border-b border-gray-200"><%= version.id %></td>
-                    <td class="p-2 border-b border-gray-200"><%= version.index %></td>
-                    <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
-                    <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
-                    <% if version.whodunnit.present? %>
-                        <td class="p-2 border-b border-gray-200"><%= User.find(version.whodunnit).first_name %> <%= User.find(version.whodunnit).last_name %></td>
-                    <% else %>
-                        <td class="p-2 border-b border-gray-200"></td>
-                    <% end %>
-                    <td class="p-2 border-b border-gray-200"><%= version.index + 1 %></td>
-                </tr>
+                <% if version.event != "create" %>
+                    <tr class="hover:bg-gray-100 cursor-pointer" data-controller="version-table-row" data-action="click->version-table-row#goToVersion" data-version-table-row-version-url-value="<%= setting_version_path(@setting, version) %>">
+                        <td class="p-2 border-b border-gray-200"><%= version.id %></td>
+                        <td class="p-2 border-b border-gray-200"><%= version.item_type %></td>
+                        <td class="p-2 border-b border-gray-200"><%= version.event.capitalize %></td>
+                        <% if version.whodunnit.present? %>
+                            <td class="p-2 border-b border-gray-200"><%= User.find(version.whodunnit).first_name %> <%= User.find(version.whodunnit).last_name %></td>
+                        <% else %>
+                            <td class="p-2 border-b border-gray-200"></td>
+                        <% end %>
+                        <td class="p-2 border-b border-gray-200"><%= version.index %></td>
+                    </tr>
+                <% end %>
             <% end %>
         </tbody>
     </table>
