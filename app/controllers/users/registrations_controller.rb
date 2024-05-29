@@ -13,6 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    params[:user][:first_name] = params[:user][:first_name].capitalize if params[:user][:first_name]
+    params[:user][:last_name] = params[:user][:last_name].capitalize if params[:user][:last_name]
     super
 
     # send slack notification
