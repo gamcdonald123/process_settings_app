@@ -20,7 +20,7 @@
                     <tr class="hover:bg-gray-100 cursor-pointer" data-controller="feedback-table-row" data-action="click->feedback-table-row#goToFeedback" data-feedback-table-row-feedback-url-value="<%= feedback_path(feedback.id) %>">
                         <td class="p-2 border-b border-gray-200"><%= feedback.id %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.user.email %></td>
-                        <td class="p-2 border-b border-gray-200"><%= feedback.comment %></td>
+                        <td class="p-2 border-b border-gray-200"><%= feedback.content %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.status %></td>
                     </tr>
                 <% end %>
