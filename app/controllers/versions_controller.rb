@@ -37,8 +37,6 @@ class VersionsController < ApplicationController
     @version_index = @setting.versions.order(created_at: :asc).pluck(:id).index(@version.id) + 1
   end
 
-
-
   private
 
   def set_setting

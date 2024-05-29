@@ -17,16 +17,16 @@ class SettingsController < ApplicationController
   end
 
   def create
-    # Convert empty strings to nil in setting_params
-    sanitized_params = sanitize_params(setting_params)
+    sanitized_params = sanitize_params(setting_params.to_h)
+    Rails.logger.info "Sanitized Setting Parameters: #{sanitized_params.inspect}"
 
     @setting = Setting.new(sanitized_params)
 
-    Rails.logger.info "Sanitized Setting Parameters: #{sanitized_params.inspect}"
-
     if @setting.save
+      Rails.logger.info "Setting saved successfully."
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
+      Rails.logger.error "Setting save failed."
       Rails.logger.error "Setting Errors: #{@setting.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
@@ -93,7 +93,11 @@ class SettingsController < ApplicationController
 
   def sanitize_params(params)
     params.each do |key, value|
-      params[key] = nil if value.blank?
+      if value.is_a?(Hash)
+        params[key] = sanitize_params(value)
+      else
+        params[key] = value.blank? ? nil : value
+      end
     end
     params
   end
