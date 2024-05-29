@@ -21,7 +21,21 @@
                         <td class="p-2 border-b border-gray-200"><%= feedback.id %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.user.email %></td>
                         <td class="p-2 border-b border-gray-200"><%= feedback.content %></td>
-                        <td class="p-2 border-b border-gray-200"><%= feedback.status %></td>
+                        <td class="p-2 border-b border-gray-200">
+                            <% if feedback.status == "Open" %>
+                                <div class="bg-red-500 h-12 w-auto flex justify-center align-middle rounded-lg">
+                                    <p class="text-white m-auto">Open</p>
+                                </div>
+                            <% elsif feedback.status == "In progress" %>
+                                <div class="bg-yellow-500 h-12 w-auto flex justify-center align-middle rounded-lg">
+                                    <p class="text-black m-auto">In progress</p>
+                                </div>
+                            <% elsif feedback.status == "Complete" %>
+                                <div class="bg-green-500 h-12 w-auto flex justify-center align-middle rounded-lg">
+                                    <p class="text-black m-auto">Complete</p>
+                                </div>
+                            <% end %>
+                        </td>
                     </tr>
                 <% end %>
             </tbody>

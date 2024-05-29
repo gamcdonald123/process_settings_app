@@ -1,12 +1,22 @@
-<div class="flex justify-between bg-yellow-700">
+<div class="flex justify-between">
   <div class="flex justify-center flex-col mb-4 border-b py-4">
     <h1><strong><%= @feedback.user.first_name %></strong> says:</h1>
     <br>
     <h1><%= @feedback.content %></h1>
   </div>
-  <div>
-    <p>Status: <%= @feedback.status %></p>
-  </div>
+  <% if @feedback.status == "Open" %>
+    <div class="bg-red-500 h-12 w-24 flex justify-center align-middle rounded-lg">
+      <p class="text-white m-auto">Open</p>
+    </div>
+  <% elsif @feedback.status == "In progress" %>
+    <div class="bg-yellow-500 h-12 w-24 flex justify-center align-middle rounded-lg">
+      <p class="text-black m-auto">In progress</p>
+    </div>
+  <% elsif @feedback.status == "Complete" %>
+    <div class="bg-green-500 h-12 w-24 flex justify-center align-middle rounded-lg">
+      <p class="text-black m-auto">Complete</p>
+    </div>
+  <% end %>
 </div>
 
 <div class="border-t border-black border-solid">
