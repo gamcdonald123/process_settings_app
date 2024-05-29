@@ -15,29 +15,7 @@ class VersionsController < ApplicationController
     Rails.logger.info "Version Object: #{@version.object.inspect}"
 
     @version_hash = OpenStruct.new(YAML.load(@version.object, permitted_classes: [Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone], aliases: true))
-
-    # Check if the current version is a create event and has a nil object
-    # if @version.event == 'create' && @version.object.nil?
-    #   @version_hash = OpenStruct.new(@setting.attributes)
-    # else
-    #   yaml_string = @version.object
-
-    #   if yaml_string.nil?
-    #     flash[:alert] = "Version data not available."
-    #     redirect_to setting_versions_path(setting_id: @setting.id) and return
-    #   end
-
-    #   # OpenStruct allows us to access the hash values as methods
-    #   begin
-    #     @version_hash = OpenStruct.new(YAML.safe_load(yaml_string, permitted_classes: [Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone],
-    #       aliases: true
-    #     ))
-    #   rescue => e
-    #     Rails.logger.error "Failed to load YAML: #{e.message}"
-    #     flash[:alert] = "Failed to load version data."
-    #     redirect_to setting_versions_path(setting_id: @setting.id) and return
-    #   end
-    # end
+    @changes = OpenStruct.new(YAML.load(@version.object_changes, permitted_classes: [Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone], aliases: true))
 
     @version_index = @setting.versions.order(created_at: :asc).pluck(:id).index(@version.id) + 1
   end
