@@ -19,6 +19,11 @@ class SettingsController < ApplicationController
   def create
     @setting = Setting.new(setting_params)
     if @setting.save
+      @version = PaperTrail::Version.where(item_id: @setting.id).last
+      if @version.event == 'create'
+        @version.object = @setting.attributes.to_yaml
+      end
+      @version.save
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
       puts @setting.errors.full_messages
