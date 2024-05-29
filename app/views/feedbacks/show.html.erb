@@ -1,8 +1,8 @@
 <div class="flex justify-between">
-  <div class="flex justify-center flex-col mb-4 border-b py-4">
+  <div class="flex justify-center flex-col mb-4 py-4">
     <h1><strong><%= @feedback.user.first_name %></strong> says:</h1>
     <br>
-    <h1><%= @feedback.content %></h1>
+    <%= @feedback.content %>
   </div>
   <% if @feedback.status == "Open" %>
     <div class="bg-red-500 h-12 w-24 flex justify-center align-middle rounded-lg">
@@ -18,23 +18,26 @@
     </div>
   <% end %>
 </div>
+<div class="mb-4">
+  <p class="text-gray-500 italic text-sm">At: <%= @feedback.created_at %></p>
+</div>
 
 <div class="border-t border-black border-solid">
-  <h2 class="text-xl font-semibold mb-4">Replies:</h2>
+  <h2 class="text-xl font-semibold mb-4 mt-4">Replies:</h2>
   <% @replies.each do |reply| %>
     <div class="mb-4">
       <p class="font-bold text-green-600 mb-1"><%= reply.user.first_name %> <%= reply.user.last_name %>:</p>
-      <p class="mb-1"><%= reply.content %></p>
+      <p class="mb-1"><%= reply.content.body %></p>
       <p class="text-gray-400 mb-1"><em><%= reply.created_at %></em></p>
     </div>
   <% end %>
 </div>
 
-<div class="">
+<div class="mt-12">
   <%= form_with model: [@feedback, Reply.new], url: reply_feedback_path(@feedback), local: true, class: "space-y-4" do |form| %>
     <div class="flex flex-col">
-      <%= form.text_area :content, class: "form-input mt-1 block w-3/4 p-2 border border-gray-300 rounded-md" %>
+      <%= form.rich_text_area :content, class: "form-input mt-1 block w-full p-2 border border-gray-300 rounded-md" %>
     </div>
-    <%= form.submit "Post Reply", class: "mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" %>
+    <%= form.submit "Reply", class: "mt-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" %>
   <% end %>
 </div>
