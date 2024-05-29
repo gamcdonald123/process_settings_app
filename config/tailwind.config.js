@@ -5,7 +5,8 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/views/**/*.{erb,haml,html,slim}',
+    './app/**/*.html.erb',
   ],
   theme: {
     extend: {
@@ -23,5 +24,4 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
   ],
-  purge: ['./app/**/*.html.erb', './app/helpers/**/*.rb', './app/javascript/**/*.js']
 }
