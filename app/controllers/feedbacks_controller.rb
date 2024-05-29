@@ -33,7 +33,7 @@ class FeedbacksController < ApplicationController
   end
 
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.order(:id).all
   end
 
   def reply
