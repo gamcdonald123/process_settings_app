@@ -17,18 +17,18 @@
         <div class="hidden md:flex justify-center flex-grow" id="menu" data-navbar-target="menu">
             <ul class="list-none flex justify-center">
                 <% if user_signed_in? %>
-                    <%= link_to authenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <%= link_to authenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-48 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
                         <li>Home</li>
                     <% end %>
                 <% else %>
-                    <%= link_to unauthenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <%= link_to unauthenticated_root_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-48 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
                         <li>Home</li>
                     <% end %>
                 <% end %>
-                <%= link_to settings_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
-                    <li>Parameters</li>
+                <%= link_to settings_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-48 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                    <li>Machine Settings</li>
                 <% end %>
-                <%= link_to feedbacks_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-32 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
+                <%= link_to feedbacks_path, class: "mr-4 ml-4 bg-sky-100 p-4 w-48 text-center rounded-md border border-transparent hover:border-blue-500 transition ease-in-out duration-200" do %>
                     <li>Feedback</li>
                 <% end %>
             </ul>
