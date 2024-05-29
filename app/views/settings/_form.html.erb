@@ -2,7 +2,7 @@
     <%= form_with(model: @setting, local: true) do |f| %>
         <div class="section border border-gray-300 rounded shadow-md p-4 mb-4">
             <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-2">Information</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4" data-controller="dropdown">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-4">
                 <div class="mb-2">
                     <%= f.label :technician_id, "Technician", class: "block text-gray-700 text-sm font-bold mb-2" %>
                     <%= f.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="mb-2">
                     <%= f.label :machine_id, "Machine", class: "block text-gray-700 text-sm font-bold mb-2" %>
-                    <%= f.select :machine_id, [], {}, {data: { dropdown_target: "machine" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+                    <%= f.select :machine_id, options_from_collection_for_select(Machine.order(:site_id, :machine_name), 'id', 'name_with_site'), { prompt: 'Select a machine' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
                 </div>
                 <div class="mb-2">
                     <%= f.label :tool_id, "Tool", class: "block text-gray-700 text-sm font-bold mb-2" %>
