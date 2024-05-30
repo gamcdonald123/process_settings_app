@@ -19,6 +19,7 @@ class SettingsController < ApplicationController
   def create
     @setting = Setting.new(setting_params)
     if @setting.save
+      @site_id = @setting.tool.site_id
       @version = PaperTrail::Version.where(item_id: @setting.id).last
       if @version.event == 'create'
         @version.object = @setting.attributes.to_yaml
