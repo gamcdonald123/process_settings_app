@@ -4,7 +4,7 @@ class Setting < ApplicationRecord
   belongs_to :technician
   # validates that rating is a number between 1 and 5
   validates :technicians_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
-  validates :machine_id, :cycle_time, :cooling_time, :tool_id, :technician_id, :site_id, presence: true
+  validates :machine_id, :cycle_time, :cooling_time, :tool_id, :technician_id, presence: true
   has_paper_trail
 
   after_create :debug_paper_trail_callbacks
