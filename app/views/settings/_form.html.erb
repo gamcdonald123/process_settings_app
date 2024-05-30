@@ -25,6 +25,10 @@
                       <%= f.number_field :cycle_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                   </div>
                   <div class="mb-2">
+                      <%= f.label :automatic, "Semi/automatic", class: "block text-gray-700 text-sm font-semibold mb-2" %>
+                      <%= f.select :automatic, options_for_select(["Semi", "Automatic"]), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                  </div>
+                  <div class="mb-2">
                       <%= f.label :drying_time, "Drying Time (hours)", class: "block text-gray-700 text-sm font-semibold mb-2" %>
                       <%= f.number_field :drying_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                   </div>
@@ -367,11 +371,11 @@
           <div class="section border-2 border-gray-300 rounded shadow-md p-4 mb-4">
               <div class="grid grid-cols-1 gap-4 mt-4">
                   <div class="mb-4">
-                      <%= f.label :technicians_rating, "Rating (1 - 5)", class: "block text-gray-700 text-sm font-semibold mb-2" %>
+                      <%= f.label :technicians_rating, "Rating (1 - 5)", class: "block text-red-500 text-sm font-semibold mb-2" %>
                       <%= f.number_field :technicians_rating, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                   </div>
                   <div class="mb-4">
-                      <%= f.label :technicians_comments, "Comments", class: "block text-gray-700 text-sm font-semibold mb-2" %>
+                      <%= f.label :technicians_comments, "Comments", class: "block text-red-500 text-sm font-semibold mb-2" %>
                       <%= f.text_area :technicians_comments, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                   </div>
               </div>
