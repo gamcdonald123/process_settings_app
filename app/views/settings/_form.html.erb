@@ -12,10 +12,6 @@
                       <%= f.label :technician_id, "Technician", class: "block text-red-500 text-sm font-semibold mb-2" %>
                       <%= f.select :technician_id, options_for_select(Technician.all.map { |s| ["#{s.first_name} #{s.last_name}", s.id] }), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
                   </div>
-                  <div class="mb-2">
-                      <%= f.label :site_id, "Site", class: "block text-red-500 text-sm font-semibold mb-2" %>
-                      <%= f.select :site_id, options_for_select(Site.all.map { |s| [s.site_name, s.id] }), {}, {data: { action: "change->dropdown#updateMachines", dropdown_target: "site" }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
-                  </div>
                   <div class="mb-2 col-span-2">
                       <p> <%= f.label :machine_id, "Machine", class: "block text-red-500 text-sm font-semibold mb-2" %> </p>
                       <%= f.select :machine_id, options_from_collection_for_select(Machine.order(:site_id, :machine_name), 'id', 'name_with_site'), { prompt: 'Select a machine' }, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
