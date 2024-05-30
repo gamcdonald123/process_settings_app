@@ -26,9 +26,8 @@ class SettingsController < ApplicationController
       @version.save
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
-      puts @setting.errors.full_messages
+      flash[:alert] = "Failed to create setting: #{@setting.errors.full_messages}"
       render :new, status: :unprocessable_entity
-      puts @setting.errors.full_messages
     end
   end
 
