@@ -19,6 +19,7 @@ class SettingsController < ApplicationController
   def create
     @setting = Setting.new(setting_params)
     if @setting.save
+      @site_id = @setting.tool.site_id
       @version = PaperTrail::Version.where(item_id: @setting.id).last
       if @version.event == 'create'
         @version.object = @setting.attributes.to_yaml
@@ -26,9 +27,8 @@ class SettingsController < ApplicationController
       @version.save
       redirect_to @setting, notice: 'Setting was successfully created.'
     else
-      puts @setting.errors.full_messages
+      flash[:alert] = "Failed to create setting: #{@setting.errors.full_messages}"
       render :new, status: :unprocessable_entity
-      puts @setting.errors.full_messages
     end
   end
 
