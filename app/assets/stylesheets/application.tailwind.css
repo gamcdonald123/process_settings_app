@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import 'actiontext.css';
+@import 'pagy.tailwind.css';
 
 @layer base {
     ul, ol {
