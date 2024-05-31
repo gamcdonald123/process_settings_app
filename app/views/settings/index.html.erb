@@ -12,8 +12,8 @@
         <%= search_form_for @q do |f| %>
             <div class="flex align-middle gap-4">
                 <div>
-                    <%= f.label :tool_name_cont %>
-                    <%= f.search_field :tool_name_cont, class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    <%= f.label "Tool name:" %>
+                    <%= f.search_field :tool_name_cont, class: "ml-4 shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                 </div>
                 <div class="font-bold bg-blue-500 text-white w-28 text-center py-2 rounded mb-4">
                     <%= f.submit %>
