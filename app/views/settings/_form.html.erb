@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-2">
                         <%= f.label :cycle_time, "Cycle Time", class: "block text-red-500 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :cycle_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :cycle_time, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-2">
                         <%= f.label :automatic, "Semi/automatic", class: "block text-gray-700 text-sm font-semibold mb-2" %>
@@ -30,23 +30,23 @@
                     </div>
                     <div class="mb-2">
                         <%= f.label :drying_time, "Drying Time (hours)", class: "block text-gray-700 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :drying_time, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :drying_time, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-2">
                         <%= f.label :drying_temp, "Drying Temp", class: "block text-gray-700 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :drying_temp, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :drying_temp, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-2">
                         <%= f.label :shot_weight, "Shot Weight", class: "block text-gray-700 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :shot_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :shot_weight, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-2">
                         <%= f.label :sprue_weight, "Sprue Weight", class: "block text-gray-700 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :sprue_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :sprue_weight, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-2">
-                        <%= f.label "cooling_time", "Cooling Time", class: "block text-red-500 text-sm font-semibold mb-2" %>
-                        <%= f.number_field "cooling_time", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.label :cooling_time, "Cooling Time", class: "block text-red-500 text-sm font-semibold mb-2" %>
+                        <%= f.number_field "cooling_time", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     <% 24.times do |i| %>
                         <div class="w-full">
                             <%= f.label "hr_zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "hr_zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "hr_zone#{i+1}_temp", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                     <% end %>
                 </div>
@@ -70,13 +70,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
                     <div class="w-full">
                             <%= f.label "nozzle_temp", "Nozzle", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "nozzle_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "nozzle_temp", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                     <%# Hot runner temperates. Change number to change fields %>
                     <% 12.times do |i| %>
                         <div class="w-full">
                             <%= f.label "zone#{i+1}_temp", "Zone #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "zone#{i+1}_temp", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "zone#{i+1}_temp", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                     <% end %>
                 </div>
@@ -90,31 +90,31 @@
                 <div class="flex flex-wrap justify-center mb-6 gap-4">
                         <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "decompression_before_screw", "Decompression Before Screw", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field :decompression_before_screw, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field :decompression_before_screw, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "decompression_after_screw", "Decompression After Screw", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field :decompression_after_screw, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field :decompression_after_screw, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "screw_speed", "Screw Speed", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field :screw_speed, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field :screw_speed, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "shot_size", "Shot Size", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field :shot_size, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field :shot_size, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "back_pressure", "Back Pressure", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "back_pressure", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "back_pressure", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4">
                             <%= f.label "cushion_position", "Cushion Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "cushion_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "cushion_position", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4">
                             <%= f.label "switchover_position", "Switchover Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "switchover_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "switchover_position", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                 </div>
             </div>
@@ -125,15 +125,15 @@
                 <div class="flex justify-center mb-6">
                         <div class="flex flex-col border rounded p-4 mr-4 w-full">
                             <%= f.label "heating_type", "Heater Type", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.select :tool_heater_type, options_for_select(["Oil", "Water"]), {}, { class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
+                            <%= f.select :tool_heater_type, options_for_select(["Oil", "Water"]), {}, { in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" } %>
                         </div>
                         <div class="flex flex-col border rounded p-4 mr-4 w-full">
                             <%= f.label "mh_temp", "Moving Half Temp", class: "text-sm mb-4 text-gray-700 font-semibold" %>
-                            <%= f.number_field "mh_temp", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "mh_temp", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4 w-full">
                             <%= f.label "fh_temp", "Fixed Half Temp", class: "text-sm mb-4 text-gray-700 font-semibold" %>
-                            <%= f.number_field "fh_temp", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "fh_temp", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                 </div>
             </div>
@@ -143,11 +143,11 @@
                 <div class="flex justify-center mb-6">
                         <div class="flex flex-col border rounded p-4 mr-12">
                             <%= f.label "opening_stroke", "Opening Stroke", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "opening_stroke", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "opening_stroke", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                         <div class="flex flex-col border rounded p-4">
                             <%= f.label "ejection_cycles", "Ejection Cycles", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "ejection_cycles", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "ejection_cycles", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -155,11 +155,11 @@
                         <div class="flex flex-col border rounded p-4">
                             <div>
                                 <%= f.label "Speed #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                                <%= f.number_field "opening_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                                <%= f.number_field "opening_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                             </div>
                             <div>
                                 <%= f.label "Position #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                                <%= f.number_field "opening_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                <%= f.number_field "opening_position_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                             </div>
                         </div>
                     <% end %>
@@ -171,35 +171,35 @@
                 <div class="flex justify-center mb-6">
                     <div class="flex flex-col border rounded p-4 mr-12">
                         <%= f.label "closing_pressure", "Closing Pressure", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "closing_pressure", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "closing_pressure", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="flex flex-col border rounded p-4">
                         <%= f.label "locking_tonnage", "Locking Tonnage", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "locking_tonnage", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "locking_tonnage", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-4">
                     <% 3.times do |i| %>
                         <div class="flex flex-col border rounded p-4">
                             <%= f.label "Speed #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "closing_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                            <%= f.number_field "closing_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                             <%= f.label "Position #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field "closing_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "closing_position_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
                     <% end %>
                 </div>
                 <div class="flex justify-center mb-6">
                     <div class="flex flex-col border rounded p-4 mr-12">
                         <%= f.label "mould_safety_position", "Mould Safety Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "mould_safety_position", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "mould_safety_position", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="flex flex-col border rounded p-4 mr-12">
                         <%= f.label "mould_safety_pressure", "Mould Safety Pressure", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "mould_safety_pressure", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "mould_safety_pressure", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="flex flex-col border rounded p-4 mr-12">
                         <%= f.label "clamp_lockup_position", "Clamp Lockup Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "clamp_lockup_position", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "clamp_lockup_position", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
             </div>
@@ -214,21 +214,21 @@
                                 <div class="px-4">
                                     <%= f.label "Speed #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_forward_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                                        <%= f.number_field "ejection_forward_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                                         <span class="ml-4 py-2">mm/s</span>
                                     </div>
                                 </div>
                                 <div class="px-4">
                                     <%= f.label "Pressure #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_forward_pressure_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                        <%= f.number_field "ejection_forward_pressure_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                                         <span class="ml-4 py-2"> bar</span>
                                     </div>
                                 </div>
                                 <div class="px-4">
                                     <%= f.label "Position #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_forward_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                        <%= f.number_field "ejection_forward_position_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                                         <span class="ml-4 py-2">mm</span>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
                     </div>
                         <div class="mt-4">
                             <%= f.label "Delay", class: "text-sm mb-4 font-semibold text-gray-700 mr-4 ml-4" %>
-                            <%= f.number_field "ejection_forward_delay", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                            <%= f.number_field "ejection_forward_delay", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                             <span class="ml-2 text-sm">s</span>
                         </div>
                 </div>
@@ -250,21 +250,21 @@
                                 <div class="px-4">
                                     <%= f.label "Speed #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_back_speed_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
+                                        <%= f.number_field "ejection_back_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" %>
                                         <span class="ml-4 py-2">mm/s</span>
                                     </div>
                                 </div>
                                 <div class="px-4">
                                     <%= f.label "Pressure #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_back_pressure_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                        <%= f.number_field "ejection_back_pressure_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                                         <span class="ml-4 py-2"> bar</span>
                                     </div>
                                 </div>
                                 <div class="px-4">
                                     <%= f.label "Position #{i+1}", class: "text-sm mb-4 font-semibold text-gray-700" %>
                                     <div class="flex w-full">
-                                        <%= f.number_field "ejection_back_position_#{i+1}", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                                        <%= f.number_field "ejection_back_position_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                                         <span class="ml-4 py-2">mm</span>
                                     </div>
                                 </div>
@@ -273,12 +273,12 @@
                     </div>
                     <div class="mt-4">
                         <%= f.label "Delay", class: "text-sm mb-4 font-semibold text-gray-700 mr-4 ml-4" %>
-                        <%= f.number_field "ejection_back_delay", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "ejection_back_delay", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         <span class="ml-2 text-sm">s</span>
                     </div>
                     <div class="flex flex-col border rounded p-4 mt-4">
                         <%= f.label "ejector_stroke", "Ejector Stroke", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "ejector_stroke", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field "ejector_stroke", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
             </div>
@@ -305,13 +305,13 @@
                                     <% end %>
                                         <td class="font-medium text-gray-700 "><%= "#{i + 1}" %></td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "injection_speed_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
+                                            <%= f.number_field "injection_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
                                         </td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "injection_position_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
+                                            <%= f.number_field "injection_position_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
                                         </td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "injection_pressure_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
+                                            <%= f.number_field "injection_pressure_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
                                         </td>
                                     </tr>
                                 <% end %>
@@ -343,13 +343,13 @@
                                 <% end %>
                                         <td class="pr-8 py-4 font-medium text-gray-900 "><%= "#{i + 1}" %></td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "holding_pressure_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
+                                            <%= f.number_field "holding_pressure_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_speed_#{i+1}_help" %>
                                         </td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "holding_pressure_time_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
+                                            <%= f.number_field "holding_pressure_time_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_position_#{i+1}_help" %>
                                         </td>
                                         <td class="px-8 py-4">
-                                            <%= f.number_field "holding_pressure_speed_#{i+1}", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
+                                            <%= f.number_field "holding_pressure_speed_#{i+1}", in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-8/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2", aria_describedby: "injection_pressure_#{i+1}_help" %>
                                         </td>
                                     </tr>
                                 <% end %>
@@ -362,11 +362,11 @@
                 <div class="grid grid-cols-1 gap-4 mt-4">
                     <div class="mb-4">
                         <%= f.label :technicians_rating, "Rating (1 - 5)", class: "block text-red-500 text-sm font-semibold mb-2" %>
-                        <%= f.number_field :technicians_rating, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.number_field :technicians_rating, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                     <div class="mb-4">
                         <%= f.label :technicians_comments, "Comments", class: "block text-red-500 text-sm font-semibold mb-2" %>
-                        <%= f.text_area :technicians_comments, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <%= f.text_area :technicians_comments, in: 0.0..999.99, step: "any", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
             </div>
