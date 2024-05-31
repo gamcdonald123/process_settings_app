@@ -5,7 +5,7 @@ class SettingsController < ApplicationController
     # @settings = Setting.joins(:tool).order('tools.name')
     # @tool = Tool.all
     @q = Setting.ransack(params[:q])
-    @settings = @q.result(distinct: true)
+    @settings = @q.result.includes(:tool)
   end
 
   def test

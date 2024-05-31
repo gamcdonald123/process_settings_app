@@ -8,6 +8,22 @@
             <p>Create</p>
         </div>
     <% end %>
+    <div class="">
+        <%= search_form_for @q do |f| %>
+            <div class="flex align-middle gap-4">
+                <div>
+                    <%= f.label :tool_name_cont %>
+                    <%= f.search_field :tool_name_cont, class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                </div>
+                <div class="font-bold bg-blue-500 text-white w-28 text-center py-2 rounded mb-4">
+                    <%= f.submit %>
+                </div>
+                <div class="font-bold bg-red-500 text-white w-28 text-center py-2 rounded mb-4">
+                    <%= link_to "Clear", settings_path %>
+                </div>
+            </div>
+        <% end %>
+    </div>
     <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative mb-4">
         <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
             <thead>

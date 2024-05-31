@@ -43,4 +43,8 @@ class Setting < ApplicationRecord
     "zone1_temp", "zone2_temp", "zone3_temp", "zone4_temp", "zone5_temp", "zone6_temp", "zone7_temp", "zone8_temp",
     "zone9_temp"]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['tool']
+  end
 end
