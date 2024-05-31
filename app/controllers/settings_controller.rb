@@ -1,11 +1,12 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy, :version]
+  include Pagy::Backend
 
   def index
     # @settings = Setting.joins(:tool).order('tools.name')
     # @tool = Tool.all
     @q = Setting.ransack(params[:q])
-    @settings = @q.result.includes(:tool)
+    @pagy, @settings = pagy(@q.result.includes(:tool), items: 20)
   end
 
   def test
