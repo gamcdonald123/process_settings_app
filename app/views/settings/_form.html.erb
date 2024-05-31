@@ -44,6 +44,10 @@
                         <%= f.label :sprue_weight, "Sprue Weight", class: "block text-gray-700 text-sm font-semibold mb-2" %>
                         <%= f.number_field :sprue_weight, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
+                    <div class="mb-2">
+                        <%= f.label "cooling_time", "Cooling Time", class: "block text-red-500 text-sm font-semibold mb-2" %>
+                        <%= f.number_field "cooling_time", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                    </div>
                 </div>
             </div>
 
@@ -83,53 +87,35 @@
             <div class="section border-2 border-gray-300 rounded shadow-md p-4 mb-4">
                 <%# Mould opening %>
                 <h2 class="block text-gray-700 text-xl font-bold mb-4">Screw</h2>
-                <div class="flex justify-center mb-6">
-                        <div class="flex flex-col border rounded p-4 mr-4 w-full">
+                <div class="flex flex-wrap justify-center mb-6 gap-4">
+                        <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "decompression_before_screw", "Decompression Before Screw", class: "text-sm mb-4 font-semibold text-gray-700" %>
                             <%= f.number_field :decompression_before_screw, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
-                        <div class="flex flex-col border rounded p-4 mr-4 w-full">
+                        <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "decompression_after_screw", "Decompression After Screw", class: "text-sm mb-4 font-semibold text-gray-700" %>
                             <%= f.number_field :decompression_after_screw, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
-                        <div class="flex flex-col border rounded p-4 w-full mr-4">
-                            <%= f.label "screw_rpm", "Screw RPM", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                            <%= f.number_field :screw_rpm, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+                        <div class="flex flex-col border rounded p-4 w-1/4">
+                            <%= f.label "screw_speed", "Screw Speed", class: "text-sm mb-4 font-semibold text-gray-700" %>
+                            <%= f.number_field :screw_speed, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
-                        <div class="flex flex-col border rounded p-4 w-full">
+                        <div class="flex flex-col border rounded p-4 w-1/4">
                             <%= f.label "shot_size", "Shot Size", class: "text-sm mb-4 font-semibold text-gray-700" %>
                             <%= f.number_field :shot_size, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         </div>
-                </div>
-            </div>
-            <div class="section border-2 border-gray-300 rounded shadow-md p-4 mb-4">
-                <%# Screw %>
-                <h2 class="block text-gray-700 text-xl font-bold mb-4">Screw</h2>
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "screw_speed", "Screw Speed", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "screw_speed", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "ejector_stroke", "Ejector Stroke", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "ejector_stroke", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "back_pressure", "Back Pressure", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "back_pressure", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "cushion_position", "Cushion Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "cushion_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "cooling_time", "Cooling Time", class: "text-sm mb-4 font-semibold text-red-500" %>
-                        <%= f.number_field "cooling_time", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
-                    <div class="flex flex-col border rounded p-4">
-                        <%= f.label "switchover_position", "Switchover Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
-                        <%= f.number_field "switchover_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
-                    </div>
+                        <div class="flex flex-col border rounded p-4 w-1/4">
+                            <%= f.label "back_pressure", "Back Pressure", class: "text-sm mb-4 font-semibold text-gray-700" %>
+                            <%= f.number_field "back_pressure", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                        </div>
+                        <div class="flex flex-col border rounded p-4">
+                            <%= f.label "cushion_position", "Cushion Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
+                            <%= f.number_field "cushion_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                        </div>
+                        <div class="flex flex-col border rounded p-4">
+                            <%= f.label "switchover_position", "Switchover Position", class: "text-sm mb-4 font-semibold text-gray-700" %>
+                            <%= f.number_field "switchover_position", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
+                        </div>
                 </div>
             </div>
             <h2 class="block text-gray-700 text-2xl font-bold mb-4 mt-4">Mould</h2>
@@ -289,6 +275,10 @@
                         <%= f.label "Delay", class: "text-sm mb-4 font-semibold text-gray-700 mr-4 ml-4" %>
                         <%= f.number_field "ejection_back_delay", class: "shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
                         <span class="ml-2 text-sm">s</span>
+                    </div>
+                    <div class="flex flex-col border rounded p-4 mt-4">
+                        <%= f.label "ejector_stroke", "Ejector Stroke", class: "text-sm mb-4 font-semibold text-gray-700" %>
+                        <%= f.number_field "ejector_stroke", class: "shadow appearance-none border rounded py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline" %>
                     </div>
                 </div>
             </div>
