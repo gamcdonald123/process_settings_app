@@ -40,7 +40,7 @@
                 <% @settings.each do |setting| %>
                     <tr class="hover:bg-gray-100 cursor-pointer" data-controller="settings-table-row" data-action="click->settings-table-row#goToSetting" data-settings-table-row-setting-url-value="<%= setting_path(setting) %>">
                         <td class="p-2 border-b border-gray-200">
-                            <%= setting.tool.name %>
+                            <%= highlight setting.tool.name, params.dig(:q, :tool_name_cont) %>
                         </td>
                         <td class="p-2 border-b border-gray-200">
                             <%= setting.machine.machine_name %>
