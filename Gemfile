@@ -33,6 +33,8 @@ gem 'paper_trail'
 
 gem 'rolify'
 
+gem 'ransack'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

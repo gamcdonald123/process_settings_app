@@ -2,8 +2,10 @@ class SettingsController < ApplicationController
   before_action :set_setting, only: [:show, :edit, :update, :destroy, :version]
 
   def index
-    @settings = Setting.joins(:tool).order('tools.name')
-    @tool = Tool.all
+    # @settings = Setting.joins(:tool).order('tools.name')
+    # @tool = Tool.all
+    @q = Setting.ransack(params[:q])
+    @settings = @q.result(distinct: true)
   end
 
   def test
