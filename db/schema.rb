@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_31_143945) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_03_150416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_143945) do
     t.integer "hydraulic_valves"
     t.integer "year_of_manufacture"
     t.index ["site_id"], name: "index_machines_on_site_id"
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string "part_number"
+    t.string "description"
+    t.integer "mrp_id"
+    t.bigint "tool_id"
+    t.string "group_code"
+    t.string "group_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "site_id", null: false
+    t.index ["site_id"], name: "index_parts_on_site_id"
+    t.index ["tool_id"], name: "index_parts_on_tool_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -317,6 +331,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_143945) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "machines", "sites"
+  add_foreign_key "parts", "sites"
+  add_foreign_key "parts", "tools"
   add_foreign_key "replies", "feedbacks"
   add_foreign_key "replies", "users"
   add_foreign_key "settings", "machines"

@@ -29,7 +29,10 @@ class MrpApiClient
     # puts "Key: #{@key}"
     # puts "Secret: #{@secret}"
 
-    uri = URI("https://api.mrpeasy.com/rest/v1/routings?code=ROU-05081")
+    routing_numbers = (1..6000).map { |i| sprintf("%05d", i) }
+
+    uri = URI("https://api.mrpeasy.com/rest/v1/routings?code=ROU-#{routing_numbers.sample}")
+
     begin
       response = URI.open(uri, http_basic_authentication: [@key, @secret])
       data = JSON.parse(response.read)
@@ -37,14 +40,21 @@ class MrpApiClient
       if e.io.status[0] == '429'
         puts "429 received, waiting 11 seconds and retrying"
         retry
+      elsif e.io.status[0] == '404'
+        puts "404 received"
       end
+    end
+
+    if data[0]['operations'][0]['description'].nil?
+      puts 'No tool code found'
+      return
     end
 
     product_id = data[0]['product_id']
     tool_code = data[0]['operations'][0]['description'].upcase
 
-    puts "Product ID: #{data[0]['product_id']}"
-    puts "Tool code: #{data[0]['operations'][0]['description'].upcase}"
+    puts "Product ID: #{product_id}"
+    puts "Tool code: #{tool_code}"
 
     puts 'Fetching article details...'
 
